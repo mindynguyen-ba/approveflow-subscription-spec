@@ -1,5 +1,5 @@
 schema_version: 1
-exported_at: "2026-10-29T00:00:00+07:00"
+exported_at: "2026-10-29T23:52:30+07:00"
 source_policy: "confluence-only"
 source_folder:
   id: "98311"
@@ -19,39 +19,73 @@ sources:
   - target: "README.md"
     content_id: "98315"
     title: "01. Project Home & Portfolio Summary"
+    version: 20
+    status: "current"
   - target: "docs/01-scope-and-decisions/decisions-log.md"
     content_id: "229475"
     title: "Architecture & Business Decision Log"
+    version: 16
+    status: "current"
   - target: "docs/01-scope-and-decisions/assumptions-log.md"
     content_id: "131269"
     title: "Assumption Register & Decision Traceability"
+    version: 15
+    status: "current"
   - target: "docs/01-scope-and-decisions/open-questions.md"
     content_id: "360481"
     title: "Open Questions & Clarifications Register"
+    version: 18
+    status: "current"
   - target: "docs/02-process-and-states/state-machines.md"
     content_id: "131234"
     title: "State Transition Model Specification"
+    version: 18
+    status: "current"
+    attachments:
+      - id: "att10092602"
+        target: "docs/02-process-and-states/assets/state-subscription-lifecycle.png"
+      - id: "att17858637"
+        target: "docs/02-process-and-states/assets/state-change-request-lifecycle.png"
   - target: "docs/02-process-and-states/bpmn-workflows.md"
     content_id: "131226"
     title: "Process Models"
+    version: 13
+    status: "current"
+    attachments:
+      - id: "att17924145"
+        target: "docs/02-process-and-states/assets/bpmn-scheduled-downgrade.png"
+      - id: "att17825822"
+        target: "docs/02-process-and-states/assets/bpmn-payment-failure-recovery.png"
   - target: "docs/03-specifications/user-stories-ac.md"
     content_ids: ["229437", "5341219"]
     titles: ["Jira Story Index", "Acceptance Criteria Coverage Matrix"]
+    versions: [17, 6]
+    status: "current"
   - target: "docs/03-specifications/data-dictionary.md"
     content_id: "229445"
     title: "ERD & Data Dictionary"
+    version: 8
+    status: "current"
   - target: "docs/03-specifications/api-contracts.md"
     content_id: "229453"
     title: "API, SQL & Sequence Analysis"
+    version: 16
+    status: "current"
   - target: "docs/03-specifications/sql-invariants.md"
     content_id: "229453"
     title: "API, SQL & Sequence Analysis"
+    version: 16
+    status: "current"
   - target: "docs/04-testing-and-uat/uat-specification.md"
     content_id: "98340"
     title: "User Acceptance Testing (UAT) Specification"
+    version: 7
+    status: "current"
   - target: "poc-automation/README.md"
     content_id: "14909445"
     title: "10. Technical PoC — Paid Upgrade Activation Monitoring"
+    version: 9
+    status: "current"
 blocked_sources:
   - target: "poc-automation/postman/approveflow_mocks.json"
     reason: "No JSON attachment exists in Confluence folder 98311; page 14909445 links to an external Postman workspace only."

@@ -4,6 +4,8 @@
 >
 > Evidence status: **BASELINED — SIMULATION** / **DESIGNED — NOT EXECUTED** unless a source section states otherwise.
 
+> **Package status: BLOCKED.** Confluence currently has no Postman collection JSON or n8n workflow JSON attachment. Add both files to the Technical PoC page before creating the release tag.
+
 ## Repository navigation
 
 - [Scope and decisions](docs/01-scope-and-decisions/decisions-log.md)
@@ -11,6 +13,7 @@
 - [Specifications](docs/03-specifications/user-stories-ac.md)
 - [Testing and UAT](docs/04-testing-and-uat/uat-specification.md)
 - [PoC automation](poc-automation/README.md)
+- [Source manifest](docs/source-manifest.yaml)
 
 ---
 
