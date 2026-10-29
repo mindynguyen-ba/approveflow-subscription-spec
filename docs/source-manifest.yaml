@@ -1,0 +1,59 @@
+schema_version: 1
+exported_at: "2026-10-29T00:00:00+07:00"
+source_policy: "confluence-only"
+source_folder:
+  id: "98311"
+  title: "ApproveFlow — SaaS Subscription Management"
+  url: "https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/folder/98311"
+  version: 1
+  status: "current"
+canonical_counts:
+  decisions: 20
+  assumptions: 25
+  clarifications: 27
+  user_stories: 6
+  acceptance_criteria: 40
+  sql_invariants: 8
+  uat_scenarios: 9
+sources:
+  - target: "README.md"
+    content_id: "98315"
+    title: "01. Project Home & Portfolio Summary"
+  - target: "docs/01-scope-and-decisions/decisions-log.md"
+    content_id: "229475"
+    title: "Architecture & Business Decision Log"
+  - target: "docs/01-scope-and-decisions/assumptions-log.md"
+    content_id: "131269"
+    title: "Assumption Register & Decision Traceability"
+  - target: "docs/01-scope-and-decisions/open-questions.md"
+    content_id: "360481"
+    title: "Open Questions & Clarifications Register"
+  - target: "docs/02-process-and-states/state-machines.md"
+    content_id: "131234"
+    title: "State Transition Model Specification"
+  - target: "docs/02-process-and-states/bpmn-workflows.md"
+    content_id: "131226"
+    title: "Process Models"
+  - target: "docs/03-specifications/user-stories-ac.md"
+    content_ids: ["229437", "5341219"]
+    titles: ["Jira Story Index", "Acceptance Criteria Coverage Matrix"]
+  - target: "docs/03-specifications/data-dictionary.md"
+    content_id: "229445"
+    title: "ERD & Data Dictionary"
+  - target: "docs/03-specifications/api-contracts.md"
+    content_id: "229453"
+    title: "API, SQL & Sequence Analysis"
+  - target: "docs/03-specifications/sql-invariants.md"
+    content_id: "229453"
+    title: "API, SQL & Sequence Analysis"
+  - target: "docs/04-testing-and-uat/uat-specification.md"
+    content_id: "98340"
+    title: "User Acceptance Testing (UAT) Specification"
+  - target: "poc-automation/README.md"
+    content_id: "14909445"
+    title: "10. Technical PoC — Paid Upgrade Activation Monitoring"
+blocked_sources:
+  - target: "poc-automation/postman/approveflow_mocks.json"
+    reason: "No JSON attachment exists in Confluence folder 98311; page 14909445 links to an external Postman workspace only."
+  - target: "poc-automation/n8n/workflow_export.json"
+    reason: "No n8n JSON attachment exists in Confluence folder 98311; page 14909445 states the workflow is retained in the author's local environment."
