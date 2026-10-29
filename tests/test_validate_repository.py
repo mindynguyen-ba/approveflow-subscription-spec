@@ -97,6 +97,13 @@ class ValidateRepositoryTests(unittest.TestCase):
         errors = validator.validate_repository(self.root)
         self.assertIn("duplicate DEC id: DEC-TEST-19", errors)
 
+    def test_accepts_confluence_table_ids_wrapped_in_backticks(self):
+        path = self.root / "docs/01-scope-and-decisions/decisions-log.md"
+        rows = [f"| `DEC-TEST-{index:02d}` | Decision {index} |" for index in range(1, 21)]
+        path.write_text("\n".join(rows), encoding="utf-8")
+        errors = validator.validate_repository(self.root)
+        self.assertNotIn("DEC count: expected 20, found 0", errors)
+
     def test_reports_canonical_count_mismatch(self):
         path = self.root / "docs/01-scope-and-decisions/assumptions-log.md"
         path.write_text("\n".join(f"ASM-TEST-{i:02d}" for i in range(1, 25)), encoding="utf-8")
