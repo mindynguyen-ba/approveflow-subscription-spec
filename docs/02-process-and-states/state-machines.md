@@ -2,9 +2,9 @@
 
 ## Rendered diagrams
 
-![Subscription lifecycle](assets/state-subscription-lifecycle.png)
+![Subscription lifecycle](../assets/state-machines/state-subscription-lifecycle.png)
 
-![Subscription Change Request lifecycle](assets/state-change-request-lifecycle.png)
+![Subscription Change Request lifecycle](../assets/state-machines/state-change-request-lifecycle.png)
 
 # Purpose
 

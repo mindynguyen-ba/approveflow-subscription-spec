@@ -4,11 +4,11 @@
 
 ### Scheduled Downgrade
 
-![Scheduled Downgrade BPMN](assets/bpmn-scheduled-downgrade.png)
+![Scheduled Downgrade BPMN](../assets/bpmn/bpmn-scheduled-downgrade.png)
 
 ### Payment Failure Recovery
 
-![Payment Failure Recovery BPMN](assets/bpmn-payment-failure-recovery.png)
+![Payment Failure Recovery BPMN](../assets/bpmn/bpmn-payment-failure-recovery.png)
 
 # Purpose
 

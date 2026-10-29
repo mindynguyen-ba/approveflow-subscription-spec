@@ -43,9 +43,9 @@ sources:
     status: "current"
     attachments:
       - id: "att10092602"
-        target: "docs/02-process-and-states/assets/state-subscription-lifecycle.png"
+        target: "docs/assets/state-machines/state-subscription-lifecycle.png"
       - id: "att17858637"
-        target: "docs/02-process-and-states/assets/state-change-request-lifecycle.png"
+        target: "docs/assets/state-machines/state-change-request-lifecycle.png"
   - target: "docs/02-process-and-states/bpmn-workflows.md"
     content_id: "131226"
     title: "Process Models"
@@ -53,9 +53,9 @@ sources:
     status: "current"
     attachments:
       - id: "att17924145"
-        target: "docs/02-process-and-states/assets/bpmn-scheduled-downgrade.png"
+        target: "docs/assets/bpmn/bpmn-scheduled-downgrade.png"
       - id: "att17825822"
-        target: "docs/02-process-and-states/assets/bpmn-payment-failure-recovery.png"
+        target: "docs/assets/bpmn/bpmn-payment-failure-recovery.png"
   - target: "docs/03-specifications/user-stories-ac.md"
     content_ids: ["229437", "5341219"]
     titles: ["Jira Story Index", "Acceptance Criteria Coverage Matrix"]

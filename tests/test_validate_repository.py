@@ -29,6 +29,13 @@ class RepositoryFixture:
         "CHANGELOG.md": "# Changelog\n",
     }
 
+    REQUIRED_ASSETS = (
+        "docs/assets/state-machines/state-subscription-lifecycle.png",
+        "docs/assets/state-machines/state-change-request-lifecycle.png",
+        "docs/assets/bpmn/bpmn-scheduled-downgrade.png",
+        "docs/assets/bpmn/bpmn-payment-failure-recovery.png",
+    )
+
     def __init__(self, root: Path):
         self.root = root
 
@@ -40,6 +47,8 @@ class RepositoryFixture:
     def build_valid(self) -> None:
         for relative, content in self.REQUIRED_TEXT.items():
             self.write(relative, content)
+        for relative in self.REQUIRED_ASSETS:
+            self.write(relative, "test image placeholder")
         self.write(
             "docs/01-scope-and-decisions/decisions-log.md",
             "\n".join(f"DEC-TEST-{index:02d}" for index in range(1, 21)),
@@ -89,6 +98,11 @@ class ValidateRepositoryTests(unittest.TestCase):
     def test_reports_missing_required_file(self):
         (self.root / "README.md").unlink()
         self.assertIn("missing required file: README.md", validator.validate_repository(self.root))
+
+    def test_requires_canonical_docs_asset_layout(self):
+        missing = "docs/assets/state-machines/state-subscription-lifecycle.png"
+        (self.root / missing).unlink()
+        self.assertIn(f"missing required file: {missing}", validator.validate_repository(self.root))
 
     def test_reports_duplicate_stable_id_even_when_total_occurrences_match(self):
         path = self.root / "docs/01-scope-and-decisions/decisions-log.md"
