@@ -11,9 +11,14 @@
 - [Scope and decisions](docs/01-scope-and-decisions/decisions-log.md)
 - [Process and states](docs/02-process-and-states/state-machines.md)
 - [Specifications](docs/03-specifications/user-stories-ac.md)
+- [UX specifications](docs/03-specifications/ux-specifications.md)
 - [Testing and UAT](docs/04-testing-and-uat/uat-specification.md)
 - [PoC automation](poc-automation/README.md)
 - [Source manifest](docs/source-manifest.yaml)
+
+## Diagram registry
+
+Final Confluence-hosted exports are packaged under `docs/assets/` for BPMN, State Machine, Wireframe, UI States, DFD, ERD and Sequence Diagram. Each consuming specification uses repository-relative links; source page, attachment ID and Figma link remain in the manifest or document.
 
 ---
 

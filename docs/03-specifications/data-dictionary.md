@@ -1,5 +1,19 @@
 > Source: [ERD & Data Dictionary](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229445) · Content ID `229445` · Version `8` · Status `current`
 
+## Packaged data models
+
+### Logical DFD
+
+![Logical DFD — Subscription Management](../assets/dfd/logical-dfd-subscription-management.png)
+
+[Open source frame in Figma](https://www.figma.com/design/ZBPovUXDJwxaT3sJhn2Zu9/ApproveFlow-%E2%80%94-SaaS-Subscription-Management?node-id=104-990)
+
+### Core Logical ERD
+
+![ApproveFlow Core Logical ERD](../assets/erd/core-logical-erd.png)
+
+[Open source frame in Figma](https://www.figma.com/design/ZBPovUXDJwxaT3sJhn2Zu9/ApproveFlow-%E2%80%94-SaaS-Subscription-Management?node-id=97-563)
+
 # Purpose
 
 Define how subscription data moves, which business entities ApproveFlow manages, how they relate and what their core fields mean.

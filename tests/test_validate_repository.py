@@ -21,6 +21,7 @@ class RepositoryFixture:
         "docs/02-process-and-states/state-machines.md": "",
         "docs/02-process-and-states/bpmn-workflows.md": "",
         "docs/03-specifications/user-stories-ac.md": "40/40 AC defined\n",
+        "docs/03-specifications/ux-specifications.md": "# UX Specifications\n",
         "docs/03-specifications/data-dictionary.md": "",
         "docs/03-specifications/api-contracts.md": "DESIGNED — NOT EXECUTED\n",
         "docs/03-specifications/sql-invariants.md": "",
@@ -30,10 +31,26 @@ class RepositoryFixture:
     }
 
     REQUIRED_ASSETS = (
+        "docs/assets/bpmn/bpmn-as-is-subscription-management.png",
+        "docs/assets/bpmn/bpmn-self-service-upgrade.png",
         "docs/assets/state-machines/state-subscription-lifecycle.png",
         "docs/assets/state-machines/state-change-request-lifecycle.png",
         "docs/assets/bpmn/bpmn-scheduled-downgrade.png",
         "docs/assets/bpmn/bpmn-payment-failure-recovery.png",
+        "docs/assets/wireframes/journey-01-user-flow.png",
+        "docs/assets/wireframes/journey-01-wireframes.png",
+        "docs/assets/wireframes/journey-02-user-flow.png",
+        "docs/assets/wireframes/journey-02-wireframes.png",
+        "docs/assets/wireframes/journey-03-user-flow.png",
+        "docs/assets/wireframes/journey-03-wireframes.png",
+        "docs/assets/ui-states/journey-01-ui-states.png",
+        "docs/assets/ui-states/journey-02-ui-states.png",
+        "docs/assets/ui-states/journey-03-ui-states.png",
+        "docs/assets/dfd/logical-dfd-subscription-management.png",
+        "docs/assets/erd/core-logical-erd.png",
+        "docs/assets/sequence-diagrams/sd-01-upgrade-payment-activation.png",
+        "docs/assets/sequence-diagrams/sd-02-payment-recovery-access-restoration.png",
+        "docs/assets/sequence-diagrams/sd-03-scheduled-downgrade-execution.png",
     )
 
     def __init__(self, root: Path):
@@ -103,6 +120,15 @@ class ValidateRepositoryTests(unittest.TestCase):
         missing = "docs/assets/state-machines/state-subscription-lifecycle.png"
         (self.root / missing).unlink()
         self.assertIn(f"missing required file: {missing}", validator.validate_repository(self.root))
+
+    def test_requires_all_seven_diagram_groups_and_ux_specification(self):
+        dfd = "docs/assets/dfd/logical-dfd-subscription-management.png"
+        ux_spec = "docs/03-specifications/ux-specifications.md"
+        (self.root / dfd).unlink()
+        (self.root / ux_spec).unlink()
+        errors = validator.validate_repository(self.root)
+        self.assertIn(f"missing required file: {dfd}", errors)
+        self.assertIn(f"missing required file: {ux_spec}", errors)
 
     def test_reports_duplicate_stable_id_even_when_total_occurrences_match(self):
         path = self.root / "docs/01-scope-and-decisions/decisions-log.md"

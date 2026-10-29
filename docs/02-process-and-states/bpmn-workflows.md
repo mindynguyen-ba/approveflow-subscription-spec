@@ -2,13 +2,29 @@
 
 ## Packaged workflows
 
+### As-Is Subscription Management
+
+![As-Is Subscription Management BPMN](../assets/bpmn/bpmn-as-is-subscription-management.png)
+
+[Open source frame in Figma](https://www.figma.com/design/ZBPovUXDJwxaT3sJhn2Zu9/ApproveFlow-%E2%80%94-SaaS-Subscription-Management?node-id=212-887)
+
+### Self-Service Upgrade
+
+![Self-Service Upgrade BPMN](../assets/bpmn/bpmn-self-service-upgrade.png)
+
+[Open source frame in Figma](https://www.figma.com/design/ZBPovUXDJwxaT3sJhn2Zu9/ApproveFlow-%E2%80%94-SaaS-Subscription-Management?node-id=245-569)
+
 ### Scheduled Downgrade
 
 ![Scheduled Downgrade BPMN](../assets/bpmn/bpmn-scheduled-downgrade.png)
 
+[Open source frame in Figma](https://www.figma.com/design/ZBPovUXDJwxaT3sJhn2Zu9/ApproveFlow-%E2%80%94-SaaS-Subscription-Management?node-id=245-689)
+
 ### Payment Failure Recovery
 
 ![Payment Failure Recovery BPMN](../assets/bpmn/bpmn-payment-failure-recovery.png)
+
+[Open source frame in Figma](https://www.figma.com/design/ZBPovUXDJwxaT3sJhn2Zu9/ApproveFlow-%E2%80%94-SaaS-Subscription-Management?node-id=210-774)
 
 # Purpose
 

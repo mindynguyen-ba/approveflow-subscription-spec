@@ -1,5 +1,25 @@
 > Source: [API, SQL & Sequence Analysis](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229453) · Content ID `229453` · Version `16` · Status `current`
 
+## Packaged sequence diagrams
+
+### SD-01 — Upgrade Payment & Entitlement Activation
+
+![SD-01 — Upgrade Payment & Entitlement Activation](../assets/sequence-diagrams/sd-01-upgrade-payment-activation.png)
+
+[Open source frame in Figma](https://www.figma.com/design/ZBPovUXDJwxaT3sJhn2Zu9/ApproveFlow-%E2%80%94-SaaS-Subscription-Management?node-id=123-2029)
+
+### SD-02 — Payment Recovery & Access Restoration
+
+![SD-02 — Payment Recovery & Access Restoration](../assets/sequence-diagrams/sd-02-payment-recovery-access-restoration.png)
+
+[Open source frame in Figma](https://www.figma.com/design/ZBPovUXDJwxaT3sJhn2Zu9/ApproveFlow-%E2%80%94-SaaS-Subscription-Management?node-id=123-2132)
+
+### SD-03 — Scheduled Downgrade Lifecycle & Execution
+
+![SD-03 — Scheduled Downgrade Lifecycle & Execution](../assets/sequence-diagrams/sd-03-scheduled-downgrade-execution.png)
+
+[Open source frame in Figma](https://www.figma.com/design/ZBPovUXDJwxaT3sJhn2Zu9/ApproveFlow-%E2%80%94-SaaS-Subscription-Management?node-id=385-2201)
+
 DESIGNED — NOT EXECUTED Business-level contracts for analysis and testing. No endpoint call, database query, integration test or production validation has been executed.
 
 **Scope:** Defines business boundaries, outcomes and traceability. It does not replace implementation-level OpenAPI/Swagger specifications.

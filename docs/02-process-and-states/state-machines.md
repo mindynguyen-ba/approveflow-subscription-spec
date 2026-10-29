@@ -4,7 +4,11 @@
 
 ![Subscription lifecycle](../assets/state-machines/state-subscription-lifecycle.png)
 
+[Open source frame in Figma](https://www.figma.com/design/ZBPovUXDJwxaT3sJhn2Zu9/ApproveFlow-%E2%80%94-SaaS-Subscription-Management?node-id=5-2)
+
 ![Subscription Change Request lifecycle](../assets/state-machines/state-change-request-lifecycle.png)
+
+[Open source frame in Figma](https://www.figma.com/design/ZBPovUXDJwxaT3sJhn2Zu9/ApproveFlow-%E2%80%94-SaaS-Subscription-Management?node-id=12-219)
 
 # Purpose
 
