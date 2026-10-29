@@ -46,7 +46,7 @@ MARKDOWN_LINK = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
 
 def _record_ids(text: str, prefix: str) -> list[str]:
     pattern = re.compile(
-        rf"^\s*(?:\|\s*)?(?:`|\*\*)?({prefix}-[A-Z0-9]+(?:[.-][A-Z0-9]+)*)\b",
+        rf"^\s*(?:(?:\|\s*)|(?:--\s+))?(?:`|\*\*)?({prefix}-[A-Z0-9]+(?:[.-][A-Z0-9]+)*)\b",
         re.MULTILINE,
     )
     return pattern.findall(text)

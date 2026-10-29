@@ -104,6 +104,13 @@ class ValidateRepositoryTests(unittest.TestCase):
         errors = validator.validate_repository(self.root)
         self.assertNotIn("DEC count: expected 20, found 0", errors)
 
+    def test_accepts_sql_ids_in_exported_sql_comments(self):
+        path = self.root / "docs/03-specifications/sql-invariants.md"
+        rows = [f"-- SQL-{index:02d} · invariant {index}" for index in range(1, 9)]
+        path.write_text("\n".join(rows), encoding="utf-8")
+        errors = validator.validate_repository(self.root)
+        self.assertNotIn("SQL count: expected 8, found 0", errors)
+
     def test_reports_canonical_count_mismatch(self):
         path = self.root / "docs/01-scope-and-decisions/assumptions-log.md"
         path.write_text("\n".join(f"ASM-TEST-{i:02d}" for i in range(1, 25)), encoding="utf-8")
