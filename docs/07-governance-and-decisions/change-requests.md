@@ -15,4 +15,3 @@ No post-baseline scope or requirement change has been submitted in this simulati
 | **CR ID** | **Requested Change** | **Impacted Slices** | **From → To** | **Decision** | **Status** |
 | --- | --- | --- | --- | --- | --- |
 | `CR-AF-001` | Prevent cancellation after processing starts | `SL-UPG-02` | `v1.0 → v1.1` | Approved | `REVISED` |
-

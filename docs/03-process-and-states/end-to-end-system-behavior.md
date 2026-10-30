@@ -69,4 +69,3 @@ Debt recovery uses a fixed **30-day (720-hour)** grace period, preserves data an
 | Was the outcome externally observable? | API response/callback acknowledgement, user notification, status query or operator alert. |
 | Was the action idempotent? | Same request/event returns or preserves the original outcome without duplicate charge or activation. |
 | Was failure safe? | Last verified plan/access/payment state is retained and recovery remains possible. |
-

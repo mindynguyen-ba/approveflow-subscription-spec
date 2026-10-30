@@ -99,4 +99,3 @@ rank_delta = 0  → NO_CHANGE — request blocked
 | **Graceful Feature Degradation** | Disable unsupported features such as webhooks or custom roles while retaining their stored configuration for future restoration. |
 
 **Validation trace:** downgrade data-integrity scenarios and `SQL-06` verify the zero-data-loss invariant.
-

@@ -51,4 +51,3 @@ If any guardrail is breached, pause expansion and open a root-cause investigatio
 Product and Operations review target attainment, guardrail breaches and support feedback, then choose one outcome: **scale**, **adjust the workflow**, or **investigate a failed hypothesis**.
 
 **Financial ROI:** not estimated because reliable labor-cost, implementation-cost and production-volume baselines are unavailable. It may be added later using approved confidential inputs.
-

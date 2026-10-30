@@ -54,5 +54,3 @@ Canonical response shape: `{"error_code":"STRING","message":"STRING"}`.
 | `PAYMENT_CALLBACK_PROCESSING_FAILED` | 500 | Retry without charging again | 05 |
 
 `DUPLICATE_CALLBACK` is not an error. Return the original processing result as an idempotent success.
-
-

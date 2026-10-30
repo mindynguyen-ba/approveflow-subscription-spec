@@ -60,4 +60,3 @@ Unverified statements are maintained in the Assumption Register and resolved thr
 - [Assumptions](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/131269/Assumption+Register+Decision+Traceability)
 - [Open Questions](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/360481/Open+Questions+Clarifications+Register)
 - [Decisions Log](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229475/Architecture+Business+Decision+Log)
-

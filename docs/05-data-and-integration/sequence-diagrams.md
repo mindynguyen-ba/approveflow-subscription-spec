@@ -29,18 +29,16 @@ DESIGNED — NOT EXECUTED Business-level contracts for analysis and testing. No 
 
 `API-02 → API-03 → API-05`. Covers payment success/failure and entitlement activation success/failure. Upgrade is complete only after entitlement activation succeeds.
 
-**Source file**: [Sequence · SD-01 — Upgrade Payment & Entitlement Activation](https://www.figma.com/design/ZBPovUXDJwxaT3sJhn2Zu9/ApproveFlow-%E2%80%94-SaaS-Subscription-Management?node-id=123-2029&t=NLj8rfer20hl6yoP-1) 
+**Source file**: [Sequence · SD-01 — Upgrade Payment & Entitlement Activation](https://www.figma.com/design/ZBPovUXDJwxaT3sJhn2Zu9/ApproveFlow-%E2%80%94-SaaS-Subscription-Management?node-id=123-2029&t=NLj8rfer20hl6yoP-1)
 
 ## S**D-02 — Payment Failure Recovery & Access Restoration**
 
 `API-04 → API-05`. Covers retry success/failure, unpaid invoice, restoration success and restoration failure. Access is restored only after all required invoices are paid.
 
-**Source file: **[Sequence · SD-02 — Payment Recovery & Access Restoration](https://www.figma.com/design/ZBPovUXDJwxaT3sJhn2Zu9/ApproveFlow-%E2%80%94-SaaS-Subscription-Management?node-id=123-2132&t=NLj8rfer20hl6yoP-1) 
+**Source file: **[Sequence · SD-02 — Payment Recovery & Access Restoration](https://www.figma.com/design/ZBPovUXDJwxaT3sJhn2Zu9/ApproveFlow-%E2%80%94-SaaS-Subscription-Management?node-id=123-2132&t=NLj8rfer20hl6yoP-1)
 
 ## SD-03 **—** **Scheduled Downgrade Lifecycle & Execution**
 
 `API-03`. Covers schedule creation, cancellation before `effective_at`, execution-time revalidation, apply success and execution failure.
 
 **Source file:** [Sequence · SD-03 — Scheduled Downgrade Lifecycle & Execution](https://www.figma.com/design/ZBPovUXDJwxaT3sJhn2Zu9/ApproveFlow-%E2%80%94-SaaS-Subscription-Management?node-id=385-2201&t=NLj8rfer20hl6yoP-1)
-
-

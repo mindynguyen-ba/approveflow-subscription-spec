@@ -27,8 +27,10 @@
 
 ## 2. Decision Tables
 
-Conditions use the **C** prefix  
-Actions and outcomes use the **A** prefix.   
+Conditions use the **C** prefix
+
+Actions and outcomes use the **A** prefix.
+
 “—” means the condition is not evaluated because an earlier condition already determines the result.
 
 ### A. Downgrade Eligibility
@@ -82,4 +84,3 @@ This table is a navigation index. [Requirements Map — Main Cockpit](https://mi
 - [State Transition Model](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/131234/State+Transition+Model+Specification) — lifecycle transitions.
 - [Exception Matrix](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/5373964/Exception+Matrix+Failure+Recovery) — exception ownership and recovery.
 - [API, SQL & Sequence Analysis](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229453/API+SQL+Sequence+Analysis) — canonical API errors and integration contracts.
-

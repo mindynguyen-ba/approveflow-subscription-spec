@@ -28,4 +28,3 @@ This page tracks scope coverage and QA planning input—not test execution evide
 
 - **Traceability invariant:** Every User Story in the committed MVP scope must have an approved AC range before moving to `In Development`.
 - **Single source of truth:** This matrix supports scope audit and test-effort planning. Detailed Given–When–Then criteria and test execution evidence remain in Jira and the configured test-management tool.
-

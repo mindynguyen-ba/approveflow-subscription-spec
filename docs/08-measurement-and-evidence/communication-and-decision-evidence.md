@@ -38,4 +38,3 @@
 - No real stakeholder interview, workshop recording, approval or production sign-off is claimed.
 - The page demonstrates analysis discipline and traceability, not production delivery experience.
 - In a live project, the decision record would also name participants, owner, date and approval authority.
-

@@ -109,4 +109,3 @@ These invariants must remain intact from Business Rule through implementation an
 | `QG-04` | **Entitlement consistency:** plan and entitlement outcomes match approved rules. | 100% accuracy | UAT scenarios and entitlement checks |
 | `QG-05` | **Grace Period compliance:** access is not restricted before expiry and follows the approved recovery policy. | 100% accuracy | Recovery timing scenarios |
 | `QG-06` | **Zero data loss on downgrade:** existing customer data is never deleted directly by a downgrade. | 0 records | Downgrade data-integrity scenarios |
-

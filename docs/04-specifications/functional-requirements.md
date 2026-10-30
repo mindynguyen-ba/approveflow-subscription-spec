@@ -116,4 +116,3 @@
 | `NFR-DATA-01` | Data preservation | Downgrade, `PAST_DUE` and `RESTRICTED` handling shall never delete existing customer data. | Data-retention and migration tests |
 
 Infrastructure sizing, detailed availability targets and unapproved retry, backoff or monitoring thresholds remain delivery-team design decisions.
-
