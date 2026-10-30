@@ -83,7 +83,6 @@ class RepositoryFixture:
     def build_valid(self) -> None:
         for target, _ in self.SOURCE_MAPPING:
             self.write(target, f"# {Path(target).stem}\n")
-        self.write("CHANGELOG.md", "# Changelog\n")
         self.write_manifest()
         for relative in self.REQUIRED_ASSETS:
             self.write(relative, "test image placeholder")

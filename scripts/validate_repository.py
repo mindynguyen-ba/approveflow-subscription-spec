@@ -8,7 +8,6 @@ from urllib.parse import unquote
 
 REQUIRED_FILES = (
     "README.md",
-    "CHANGELOG.md",
     "docs/source-manifest.yaml",
     "docs/01-business-context/business-brief.md",
     "docs/01-business-context/scope-and-metrics.md",
@@ -76,7 +75,7 @@ EVIDENCE_FILES = (
 
 SOURCE_TARGETS = tuple(
     relative for relative in REQUIRED_FILES
-    if relative == "README.md" or relative.endswith(".md") and relative != "CHANGELOG.md"
+    if relative == "README.md" or relative.endswith(".md")
 )
 SUPERSEDED_DOC_DIRS = (
     "docs/01-scope-and-decisions",
