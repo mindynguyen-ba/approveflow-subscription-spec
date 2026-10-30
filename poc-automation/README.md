@@ -2,7 +2,7 @@
 
 > Source: [10. Technical PoC — Paid Upgrade Activation Monitoring](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/14909445) · Content ID `14909445` · Version `9` · Status `current`
 
-> Packaging gate: the [Postman collection](postman/approveflow_mocks.json) is sourced from Confluence attachment `att18481153`. The n8n workflow JSON remains blocked because the page states that it is retained locally and has no attachment.
+> Packaging gate: the [Postman collection](postman/approveflow_mocks.json) and [n8n workflow](n8n/workflow_export.json) are sourced from Confluence attachments `att18481153` and `att18546689`. Both checksums are recorded in the source manifest.
 
 **Status:** PROTOTYPED — MANUAL VERIFICATION COMPLETE
 
@@ -25,7 +25,7 @@ n8n Workflow Prototype
 └── Classify outcome and route the proposed operational alert
 ```
 
-**Prototype artifacts:** [Repository Postman collection](postman/approveflow_mocks.json) · [Postman workspace](https://mindy-workflows-4402981.postman.co/workspace/af7a4bfd-a892-4d38-8534-cee67ef4f9e4/collection/59058682-f1c3c4a6-ed79-43f7-99f2-5cd9b1b03669) · n8n workflow retained in the author’s local environment.
+**Prototype artifacts:** [Repository Postman collection](postman/approveflow_mocks.json) · [Repository n8n workflow](n8n/workflow_export.json) · [Postman workspace](https://mindy-workflows-4402981.postman.co/workspace/af7a4bfd-a892-4d38-8534-cee67ef4f9e4/collection/59058682-f1c3c4a6-ed79-43f7-99f2-5cd9b1b03669).
 
 # 2. Evaluation Matrix & Domain Mapping
 

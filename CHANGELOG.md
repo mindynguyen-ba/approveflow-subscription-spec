@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased — Confluence baseline export
+## 1.0.0 — 2026-10-30
 
 ### Added
 
@@ -11,10 +11,6 @@
 - Eight SQL invariants and nine UAT scenarios, explicitly marked `DESIGNED — NOT EXECUTED`.
 - Technical PoC documentation from Confluence page `14909445` version 9.
 - Postman Collection v2.1 from Confluence attachment `att18481153`, with checksum recorded in the source manifest.
+- n8n 100% No-Code workflow from Confluence attachment `att18546689`, with checksum recorded in the source manifest.
 - Dependency-free repository validator and unit-test suite.
-
-### Blocked
-
-- `poc-automation/n8n/workflow_export.json`: no JSON attachment exists in Confluence folder `98311`.
-- Release tag and remote push remain blocked until the n8n source artifact is added to Confluence and exported.
 

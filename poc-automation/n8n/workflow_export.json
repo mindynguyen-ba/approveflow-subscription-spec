@@ -1,0 +1,1101 @@
+{
+  "name": "[Final] ApproveFlow — Paid Upgrade Activation Check (100% No-Code)",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## 📋 Test Oracle & Scenario Matrix\n*Change `test_id` and `change_request_id` in **Set Test Variables**. Postman selects the mock response by request path; no `x-mock-response-name` header is required.*\n\n| Test ID | change_request_id | Scenario | Expected branch |\n| :---: | :--- | :--- | :--- |\n| **T01** | `CR-20261017-001` | APPLIED PRO after 45s | `Format: MATCHED` |\n| **T02** | `CR-20261017-002` | PENDING within 300s | `Format: WITHIN_WAIT` |\n| **T03** | `CR-20261017-003` | PENDING beyond 300s | `Format: EXCEPTION` ➔ Webhook Alert |\n| **T04** | `CR-20261017-004` | `payment_confirmed_at = null` | `Format: SKIPPED` |\n| **T05** | `CR-20261017-005` | Workspace mismatch | `Format: DATA_WARNING (Mismatch)` |\n| **T06** | `CR-20261017-006` | Entitlement HTTP 500 | `Format: READ_ERROR (Ent)` |\n| **T07** | `CR-20261017-007` | Entitlement HTTP 404 | `Format: DATA_WARNING (404)` |\n| **T08** | `CR-20261017-008` | APPLIED BASIC instead of PRO | `Format: EXCEPTION` ➔ Webhook Alert |",
+        "height": 500,
+        "width": 1100,
+        "color": 3
+      },
+      "id": "92668e61-0547-4cc8-94b8-71505a75381c",
+      "name": "Sticky Note - Test Matrix",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "content": "### 1. Ingestion & Subscription Check\nKhai báo mock request và truy vấn trạng thái thanh toán",
+        "height": 780,
+        "width": 1100,
+        "color": 4
+      },
+      "id": "77d527f7-96ef-420d-b220-400db8f9aaa6",
+      "name": "Sticky Note - Stage 1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        544
+      ]
+    },
+    {
+      "parameters": {
+        "content": "### 2. Entitlement & Tenant Verification\nKiểm tra cấp quyền downstream và đối soát tenant identity",
+        "height": 1020,
+        "width": 560,
+        "color": 6
+      },
+      "id": "4bacf17b-bd81-4240-bad1-2e083993ca41",
+      "name": "Sticky Note - Stage 2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1152,
+        544
+      ]
+    },
+    {
+      "parameters": {
+        "content": "### 3. Business SLA & Outcome Evaluation\nTính toán thời gian chờ và phân loại theo BR-UPG-01",
+        "height": 780,
+        "width": 840,
+        "color": 5
+      },
+      "id": "52151307-b264-4ebc-9a35-dd95a2ca79aa",
+      "name": "Sticky Note - Stage 3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1744,
+        544
+      ]
+    },
+    {
+      "parameters": {
+        "content": "### 4. Operations Alerting\nBắn Webhook khẩn cấp khi gặp Exception",
+        "height": 380,
+        "width": 360
+      },
+      "id": "de15da7b-acb0-4ef1-aa28-a11659e3eca2",
+      "name": "Sticky Note - Stage 4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2624,
+        944
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d35667f7-0baa-44b1-9047-cc92c96c0f52",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        64,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "var-base-url",
+              "name": "mock_base_url",
+              "value": "https://635d8b29-6efe-447b-bd79-ae0e7b02c3b2.mock.pstmn.io",
+              "type": "string"
+            },
+            {
+              "id": "var-checked-at",
+              "name": "checked_at",
+              "value": "2026-10-17T02:10:00Z",
+              "type": "string"
+            },
+            {
+              "id": "var-test-id",
+              "name": "test_id",
+              "value": "T08",
+              "type": "string"
+            },
+            {
+              "id": "var-cr-id",
+              "name": "change_request_id",
+              "value": "CR-20261017-008",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2c7578c9-11f4-4b25-9abb-4f735759cd24",
+      "name": "Set Test Variables",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.mock_base_url }}/subscription-changes/{{ $json.change_request_id }}",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "id": "030db759-b064-4a7e-ab3b-5c450325139f",
+      "name": "Get Subscription Change",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        592,
+        640
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.statusCode }}",
+                    "rightValue": 200,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  },
+                  {
+                    "leftValue": "={{ Boolean($json.body.payment_confirmed_at) }}",
+                    "rightValue": true,
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "equals"
+                    }
+                  },
+                  {
+                    "leftValue": "={{ $json.body.change_type }}",
+                    "rightValue": "UPGRADE",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Valid Confirmed Upgrade"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.statusCode }}",
+                    "rightValue": 200,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Payment Not Confirmed (Skip)"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "id": "9a12bcc8-8e11-4123-8adc-edc1dc3580f3",
+      "name": "Switch: Validate Sub Response",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        848,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "out-skip-id",
+              "name": "change_request_id",
+              "value": "={{ $('Set Test Variables').item.json.change_request_id }}",
+              "type": "string"
+            },
+            {
+              "id": "out-skip-out",
+              "name": "outcome",
+              "value": "SKIPPED",
+              "type": "string"
+            },
+            {
+              "id": "out-skip-reason",
+              "name": "reason",
+              "value": "Payment is not confirmed (payment_confirmed_at is null).",
+              "type": "string"
+            },
+            {
+              "id": "out-skip-time",
+              "name": "evaluated_at",
+              "value": "={{ $('Set Test Variables').item.json.checked_at }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "38ab0c9c-3e5e-4413-9128-8f53a6fbb29a",
+      "name": "Format: SKIPPED",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        848,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "out-suberr-id",
+              "name": "change_request_id",
+              "value": "={{ $('Set Test Variables').item.json.change_request_id }}",
+              "type": "string"
+            },
+            {
+              "id": "out-suberr-out",
+              "name": "outcome",
+              "value": "READ_ERROR",
+              "type": "string"
+            },
+            {
+              "id": "out-suberr-reason",
+              "name": "reason",
+              "value": "Failed to retrieve subscription change request (HTTP Error)",
+              "type": "string"
+            },
+            {
+              "id": "out-suberr-time",
+              "name": "evaluated_at",
+              "value": "={{ $('Set Test Variables').item.json.checked_at }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "849edf08-d004-48a3-a9f5-928c63f27ed2",
+      "name": "Format: READ_ERROR (Sub)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        848,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Set Test Variables').item.json.mock_base_url }}/entitlement-applications/{{ $('Set Test Variables').item.json.change_request_id }}",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "id": "dd19135b-f6f4-469a-899d-52e68f5969c8",
+      "name": "Get Entitlement Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1200,
+        640
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.statusCode }}",
+                    "rightValue": 200,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  },
+                  {
+                    "leftValue": "={{ $json.body.workspace_id }}",
+                    "rightValue": "={{ $('Get Subscription Change').item.json.body.workspace_id }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Valid Entitlement Response"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.statusCode }}",
+                    "rightValue": 200,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  },
+                  {
+                    "leftValue": "={{ $json.body.workspace_id }}",
+                    "rightValue": "={{ $('Get Subscription Change').item.json.body.workspace_id }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEquals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Workspace Mismatch"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.statusCode }}",
+                    "rightValue": 404,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Record Not Found (404)"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "id": "d01af3f8-0b12-4936-853d-27e4a397b230",
+      "name": "Switch: Validate Ent Status & Identity",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1472,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "out-mismatch-id",
+              "name": "change_request_id",
+              "value": "={{ $('Get Subscription Change').item.json.body.change_request_id }}",
+              "type": "string"
+            },
+            {
+              "id": "out-mismatch-ws",
+              "name": "workspace_id",
+              "value": "={{ $('Get Subscription Change').item.json.body.workspace_id }}",
+              "type": "string"
+            },
+            {
+              "id": "out-mismatch-target",
+              "name": "target_plan_code",
+              "value": "={{ $('Get Subscription Change').item.json.body.target_plan_code }}",
+              "type": "string"
+            },
+            {
+              "id": "out-mismatch-observed",
+              "name": "observed_plan_code",
+              "value": "={{ $('Get Entitlement Status').item.json.body.target_plan_code }}",
+              "type": "string"
+            },
+            {
+              "id": "out-mismatch-out",
+              "name": "outcome",
+              "value": "DATA_WARNING",
+              "type": "string"
+            },
+            {
+              "id": "out-mismatch-reason",
+              "name": "reason",
+              "value": "Workspace ID mismatch between services",
+              "type": "string"
+            },
+            {
+              "id": "out-mismatch-time",
+              "name": "evaluated_at",
+              "value": "={{ $('Set Test Variables').item.json.checked_at }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f1b48bb4-a9e6-4cf3-b124-644db63b314b",
+      "name": "Format: DATA_WARNING (Mismatch)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1472,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "out-notfound-id",
+              "name": "change_request_id",
+              "value": "={{ $('Get Subscription Change').item.json.body.change_request_id }}",
+              "type": "string"
+            },
+            {
+              "id": "out-notfound-ws",
+              "name": "workspace_id",
+              "value": "={{ $('Get Subscription Change').item.json.body.workspace_id }}",
+              "type": "string"
+            },
+            {
+              "id": "out-notfound-target",
+              "name": "target_plan_code",
+              "value": "={{ $('Get Subscription Change').item.json.body.target_plan_code }}",
+              "type": "string"
+            },
+            {
+              "id": "out-notfound-out",
+              "name": "outcome",
+              "value": "DATA_WARNING",
+              "type": "string"
+            },
+            {
+              "id": "out-notfound-reason",
+              "name": "reason",
+              "value": "Entitlement record not found (HTTP 404)",
+              "type": "string"
+            },
+            {
+              "id": "out-notfound-time",
+              "name": "evaluated_at",
+              "value": "={{ $('Set Test Variables').item.json.checked_at }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ae1cc4b8-142c-432a-a076-93bcec564609",
+      "name": "Format: DATA_WARNING (404)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1472,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "out-enterr-id",
+              "name": "change_request_id",
+              "value": "={{ $('Get Subscription Change').item.json.body.change_request_id }}",
+              "type": "string"
+            },
+            {
+              "id": "out-enterr-ws",
+              "name": "workspace_id",
+              "value": "={{ $('Get Subscription Change').item.json.body.workspace_id }}",
+              "type": "string"
+            },
+            {
+              "id": "out-enterr-target",
+              "name": "target_plan_code",
+              "value": "={{ $('Get Subscription Change').item.json.body.target_plan_code }}",
+              "type": "string"
+            },
+            {
+              "id": "out-enterr-out",
+              "name": "outcome",
+              "value": "READ_ERROR",
+              "type": "string"
+            },
+            {
+              "id": "out-enterr-reason",
+              "name": "reason",
+              "value": "Failed to retrieve entitlement data (HTTP 500)",
+              "type": "string"
+            },
+            {
+              "id": "out-enterr-time",
+              "name": "evaluated_at",
+              "value": "={{ $('Set Test Variables').item.json.checked_at }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d7cb0b0c-454c-4268-a031-65cc63898189",
+      "name": "Format: READ_ERROR (Ent)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1472,
+        1360
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "calc-elapsed",
+              "name": "elapsed_seconds",
+              "value": "={{ Math.round((new Date($('Get Entitlement Status').item.json.body.completed_at || $('Set Test Variables').item.json.checked_at) - new Date($('Get Subscription Change').item.json.body.payment_confirmed_at)) / 1000) }}",
+              "type": "number"
+            },
+            {
+              "id": "calc-is-pending",
+              "name": "is_pending",
+              "value": "={{ $('Get Entitlement Status').item.json.body.status === 'PENDING' }}",
+              "type": "boolean"
+            },
+            {
+              "id": "calc-is-applied-match",
+              "name": "is_applied_match",
+              "value": "={{ $('Get Entitlement Status').item.json.body.status === 'APPLIED' && $('Get Entitlement Status').item.json.body.target_plan_code === $('Get Subscription Change').item.json.body.target_plan_code }}",
+              "type": "boolean"
+            },
+            {
+              "id": "calc-is-wrong-plan",
+              "name": "is_wrong_plan",
+              "value": "={{ $('Get Entitlement Status').item.json.body.status === 'APPLIED' && $('Get Entitlement Status').item.json.body.target_plan_code !== $('Get Subscription Change').item.json.body.target_plan_code }}",
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c2f86ecc-c092-4d8b-a5bd-619aab5410ec",
+      "name": "Calculate Wait Time & Flags",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1808,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.is_applied_match }}",
+                    "rightValue": true,
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Matched (Success)"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.is_pending }}",
+                    "rightValue": true,
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "equals"
+                    }
+                  },
+                  {
+                    "leftValue": "={{ $json.elapsed_seconds }}",
+                    "rightValue": 300,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Within Wait (<= 300s)"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "id": "c6a74bca-541d-4c70-8689-ce6143f612bb",
+      "name": "Switch: Business Logic (BR-UPG-01)",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        2080,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "out-m-id",
+              "name": "change_request_id",
+              "value": "={{ $('Get Subscription Change').item.json.body.change_request_id }}",
+              "type": "string"
+            },
+            {
+              "id": "out-m-ws",
+              "name": "workspace_id",
+              "value": "={{ $('Get Subscription Change').item.json.body.workspace_id }}",
+              "type": "string"
+            },
+            {
+              "id": "out-m-target",
+              "name": "target_plan_code",
+              "value": "={{ $('Get Subscription Change').item.json.body.target_plan_code }}",
+              "type": "string"
+            },
+            {
+              "id": "out-m-obs",
+              "name": "observed_plan_code",
+              "value": "={{ $('Get Entitlement Status').item.json.body.target_plan_code }}",
+              "type": "string"
+            },
+            {
+              "id": "out-m-elapsed",
+              "name": "elapsed_seconds",
+              "value": "={{ $('Calculate Wait Time & Flags').item.json.elapsed_seconds }}",
+              "type": "number"
+            },
+            {
+              "id": "out-m-out",
+              "name": "outcome",
+              "value": "MATCHED",
+              "type": "string"
+            },
+            {
+              "id": "out-m-reason",
+              "name": "reason",
+              "value": "Target entitlement activated successfully.",
+              "type": "string"
+            },
+            {
+              "id": "out-m-time",
+              "name": "evaluated_at",
+              "value": "={{ $('Set Test Variables').item.json.checked_at }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "12e4facf-b413-4eda-9655-1f51c6ee88ac",
+      "name": "Format: MATCHED",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2368,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "out-w-id",
+              "name": "change_request_id",
+              "value": "={{ $('Get Subscription Change').item.json.body.change_request_id }}",
+              "type": "string"
+            },
+            {
+              "id": "out-w-ws",
+              "name": "workspace_id",
+              "value": "={{ $('Get Subscription Change').item.json.body.workspace_id }}",
+              "type": "string"
+            },
+            {
+              "id": "out-w-target",
+              "name": "target_plan_code",
+              "value": "={{ $('Get Subscription Change').item.json.body.target_plan_code }}",
+              "type": "string"
+            },
+            {
+              "id": "out-w-obs",
+              "name": "observed_plan_code",
+              "value": "={{ $('Get Entitlement Status').item.json.body.target_plan_code || null }}",
+              "type": "string"
+            },
+            {
+              "id": "out-w-elapsed",
+              "name": "elapsed_seconds",
+              "value": "={{ $('Calculate Wait Time & Flags').item.json.elapsed_seconds }}",
+              "type": "number"
+            },
+            {
+              "id": "out-w-out",
+              "name": "outcome",
+              "value": "WITHIN_WAIT",
+              "type": "string"
+            },
+            {
+              "id": "out-w-reason",
+              "name": "reason",
+              "value": "Pending activation within the 300-second window.",
+              "type": "string"
+            },
+            {
+              "id": "out-w-time",
+              "name": "evaluated_at",
+              "value": "={{ $('Set Test Variables').item.json.checked_at }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "70572428-025b-46f4-9825-08b420202075",
+      "name": "Format: WITHIN_WAIT",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2368,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "out-e-id",
+              "name": "change_request_id",
+              "value": "={{ $('Get Subscription Change').item.json.body.change_request_id }}",
+              "type": "string"
+            },
+            {
+              "id": "out-e-ws",
+              "name": "workspace_id",
+              "value": "={{ $('Get Subscription Change').item.json.body.workspace_id }}",
+              "type": "string"
+            },
+            {
+              "id": "out-e-target",
+              "name": "target_plan_code",
+              "value": "={{ $('Get Subscription Change').item.json.body.target_plan_code }}",
+              "type": "string"
+            },
+            {
+              "id": "out-e-obs",
+              "name": "observed_plan_code",
+              "value": "={{ $('Get Entitlement Status').item.json.body.target_plan_code || null }}",
+              "type": "string"
+            },
+            {
+              "id": "out-e-elapsed",
+              "name": "elapsed_seconds",
+              "value": "={{ $('Calculate Wait Time & Flags').item.json.elapsed_seconds }}",
+              "type": "number"
+            },
+            {
+              "id": "out-e-out",
+              "name": "outcome",
+              "value": "EXCEPTION",
+              "type": "string"
+            },
+            {
+              "id": "out-e-reason",
+              "name": "reason",
+              "value": "={{ $('Calculate Wait Time & Flags').item.json.is_wrong_plan ? 'Applied plan code does not match target plan code.' : 'Activation remains pending beyond 300 seconds.' }}",
+              "type": "string"
+            },
+            {
+              "id": "out-e-time",
+              "name": "evaluated_at",
+              "value": "={{ $('Set Test Variables').item.json.checked_at }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "20e28807-815d-410f-b6c9-380ba248feb1",
+      "name": "Format: EXCEPTION",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2368,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://httpbin.org/post",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"embeds\": [\n    {\n      \"title\": \"🚨 [ApproveFlow Operations] Subscription Activation Alert\",\n      \"description\": \"Platform Admin intervention required: Inspect downstream queue and reconcile entitlements WITHOUT recharging tenant.\",\n      \"color\": 15158332,\n      \"fields\": [\n        {\n          \"name\": \"Change Request ID\",\n          \"value\": \"{{ $json.change_request_id }}\",\n          \"inline\": true\n        },\n        {\n          \"name\": \"Workspace ID\",\n          \"value\": \"{{ $json.workspace_id }}\",\n          \"inline\": true\n        },\n        {\n          \"name\": \"Target Plan Code\",\n          \"value\": \"{{ $json.target_plan_code }}\",\n          \"inline\": true\n        },\n        {\n          \"name\": \"Observed Plan Code\",\n          \"value\": \"{{ $json.observed_plan_code || 'Not Provisioned (Pending)' }}\",\n          \"inline\": true\n        },\n        {\n          \"name\": \"Elapsed Time\",\n          \"value\": \"{{ $json.elapsed_seconds }} sec\",\n          \"inline\": true\n        },\n        {\n          \"name\": \"Outcome\",\n          \"value\": \"{{ $json.outcome }}\",\n          \"inline\": true\n        },\n        {\n          \"name\": \"Reason\",\n          \"value\": \"{{ $json.reason }}\"\n        },\n        {\n          \"name\": \"Rule Violated\",\n          \"value\": \"BR-UPG-01 & EX-UPG-03\"\n        }\n      ]\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "26ac3f91-ab8a-4ebe-b598-2bc4c62543b8",
+      "name": "Alert Operations (Webhook)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2688,
+        1120
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set Test Variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Test Variables": {
+      "main": [
+        [
+          {
+            "node": "Get Subscription Change",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Subscription Change": {
+      "main": [
+        [
+          {
+            "node": "Switch: Validate Sub Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch: Validate Sub Response": {
+      "main": [
+        [
+          {
+            "node": "Get Entitlement Status",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format: SKIPPED",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format: READ_ERROR (Sub)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Entitlement Status": {
+      "main": [
+        [
+          {
+            "node": "Switch: Validate Ent Status & Identity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch: Validate Ent Status & Identity": {
+      "main": [
+        [
+          {
+            "node": "Calculate Wait Time & Flags",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format: DATA_WARNING (Mismatch)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format: DATA_WARNING (404)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format: READ_ERROR (Ent)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate Wait Time & Flags": {
+      "main": [
+        [
+          {
+            "node": "Switch: Business Logic (BR-UPG-01)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch: Business Logic (BR-UPG-01)": {
+      "main": [
+        [
+          {
+            "node": "Format: MATCHED",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format: WITHIN_WAIT",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format: EXCEPTION",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format: EXCEPTION": {
+      "main": [
+        [
+          {
+            "node": "Alert Operations (Webhook)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": true
+  },
+  "versionId": "27e3e151-b81d-4ac4-870b-5e8bf0311b18",
+  "meta": {
+    "instanceId": "44ca6a2848ede2887cd99367dbb15e7af9acb40b8a64f4a04532e3776ba7f605"
+  },
+  "nodeGroups": [],
+  "id": "xGhMyH2BjxkbfWdh",
+  "tags": []
+}
