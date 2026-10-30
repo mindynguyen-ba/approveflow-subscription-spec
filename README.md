@@ -150,3 +150,9 @@ Canonical definitions: [Scope and Metrics](docs/01-business-context/scope-and-me
 | Data Integrity & Integration Reasoning | [Logical ERD and Data Dictionary](docs/05-data-and-integration/erd-and-data-dictionary.md) plus [API-01–08](docs/05-data-and-integration/api-contracts.md) and [SQL-01–08](docs/05-data-and-integration/sql-invariants.md) specify payment idempotency, conditional invoice/SCR parentage, entitlement consistency and the zero-data-loss downgrade invariant. |
 | Engineering Integrity | [20/20 simulation decisions](docs/07-governance-and-decisions/architecture-decisions.md) are baselined; the [Technical PoC records 8/8 author-run mock scenarios](poc-automation/README.md); API/SQL validation and 9 UAT scenarios remain DESIGNED — NOT EXECUTED, with no production-readiness claim. |
 
+## Usage & Copyright
+
+This repository is published solely as a Business Analysis portfolio case study.
+
+All rights reserved. No permission is granted to copy, redistribute, modify, or use its contents for commercial or derivative purposes without prior written consent.
+
