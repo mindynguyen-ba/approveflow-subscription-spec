@@ -1,0 +1,585 @@
+{
+  "info": {
+    "_postman_id": "f1c3c4a6-ed79-43f7-99f2-5cd9b1b03669",
+    "name": "ApproveFlow — Activation Demo",
+    "description": "Postman Collection for ApproveFlow Paid Upgrade Activation Technical Demo (1-Day Scope). Contains mock requests and examples for T01-T08 test cases.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "59058682",
+    "_collection_link": "https://go.postman.co/collection/59058682-f1c3c4a6-ed79-43f7-99f2-5cd9b1b03669?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get Subscription Change",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-mock-response-name",
+            "value": "{{mock_example_name}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{mock_base_url}}/subscription-changes/:id",
+          "host": [
+            "{{mock_base_url}}"
+          ],
+          "path": [
+            "subscription-changes",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "CR-20261017-001"
+            }
+          ]
+        },
+        "description": "Retrieve subscription change request details and payment status from ApproveFlow."
+      },
+      "response": [
+        {
+          "name": "SUB_T01_PAID",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "SUB_T01_PAID"
+              }
+            ],
+            "url": {
+              "raw": "{{mock_base_url}}/subscription-changes/CR-20261017-001",
+              "host": [
+                "{{mock_base_url}}"
+              ],
+              "path": [
+                "subscription-changes",
+                "CR-20261017-001"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"change_request_id\": \"CR-20261017-001\",\n  \"workspace_id\": \"WS-9081\",\n  \"change_type\": \"UPGRADE\",\n  \"source_plan_code\": \"BASIC\",\n  \"target_plan_code\": \"PRO\",\n  \"status\": \"ACTIVATION_PENDING\",\n  \"payment_confirmed_at\": \"2026-10-17T02:04:30Z\"\n}"
+        },
+        {
+          "name": "SUB_T02_WITHIN_WAIT",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "SUB_T02_WITHIN_WAIT"
+              }
+            ],
+            "url": {
+              "raw": "{{mock_base_url}}/subscription-changes/CR-20261017-002",
+              "host": [
+                "{{mock_base_url}}"
+              ],
+              "path": [
+                "subscription-changes",
+                "CR-20261017-002"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"change_request_id\": \"CR-20261017-002\",\n  \"workspace_id\": \"WS-9081\",\n  \"change_type\": \"UPGRADE\",\n  \"source_plan_code\": \"BASIC\",\n  \"target_plan_code\": \"PRO\",\n  \"status\": \"ACTIVATION_PENDING\",\n  \"payment_confirmed_at\": \"2026-10-17T02:06:30Z\"\n}"
+        },
+        {
+          "name": "SUB_T03_TIMEOUT",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "SUB_T03_TIMEOUT"
+              }
+            ],
+            "url": {
+              "raw": "{{mock_base_url}}/subscription-changes/CR-20261017-003",
+              "host": [
+                "{{mock_base_url}}"
+              ],
+              "path": [
+                "subscription-changes",
+                "CR-20261017-003"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"change_request_id\": \"CR-20261017-003\",\n  \"workspace_id\": \"WS-9081\",\n  \"change_type\": \"UPGRADE\",\n  \"source_plan_code\": \"BASIC\",\n  \"target_plan_code\": \"PRO\",\n  \"status\": \"ACTIVATION_PENDING\",\n  \"payment_confirmed_at\": \"2026-10-17T01:50:00Z\"\n}"
+        },
+        {
+          "name": "SUB_T04_PAYMENT_FAILED",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "SUB_T04_PAYMENT_FAILED"
+              }
+            ],
+            "url": {
+              "raw": "{{mock_base_url}}/subscription-changes/CR-20261017-004",
+              "host": [
+                "{{mock_base_url}}"
+              ],
+              "path": [
+                "subscription-changes",
+                "CR-20261017-004"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"change_request_id\": \"CR-20261017-004\",\n  \"workspace_id\": \"WS-9081\",\n  \"change_type\": \"UPGRADE\",\n  \"source_plan_code\": \"BASIC\",\n  \"target_plan_code\": \"PRO\",\n  \"status\": \"PAYMENT_FAILED\",\n  \"payment_confirmed_at\": null\n}"
+        },
+        {
+          "name": "SUB_T05_WS_MISMATCH",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "SUB_DEFAULT_VALID"
+              }
+            ],
+            "url": {
+              "raw": "{{mock_base_url}}/subscription-changes/CR-20261017-005",
+              "host": [
+                "{{mock_base_url}}"
+              ],
+              "path": [
+                "subscription-changes",
+                "CR-20261017-005"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"change_request_id\": \"CR-20261017-005\",\n  \"workspace_id\": \"WS-9081\",\n  \"change_type\": \"UPGRADE\",\n  \"source_plan_code\": \"BASIC\",\n  \"target_plan_code\": \"PRO\",\n  \"status\": \"ACTIVATION_PENDING\",\n  \"payment_confirmed_at\": \"2026-10-17T02:04:30Z\"\n}"
+        },
+        {
+          "name": "SUB_T06_VALID",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "{{mock_example_name}}"
+              }
+            ],
+            "url": {
+              "raw": "{{mock_base_url}}/subscription-changes/CR-20261017-006",
+              "host": [
+                "{{mock_base_url}}"
+              ],
+              "path": [
+                "subscription-changes",
+                "CR-20261017-006"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"change_request_id\": \"CR-20261017-006\",\n    \"workspace_id\": \"WS-9081\",\n    \"change_type\": \"UPGRADE\",\n    \"source_plan_code\": \"BASIC\",\n    \"target_plan_code\": \"PRO\",\n    \"status\": \"ACTIVATION_PENDING\",\n    \"payment_confirmed_at\": \"2026-10-17T02:04:30Z\"\n}"
+        },
+        {
+          "name": "SUB_T07_VALID",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "{{mock_example_name}}"
+              }
+            ],
+            "url": {
+              "raw": "{{mock_base_url}}/subscription-changes/CR-20261017-007",
+              "host": [
+                "{{mock_base_url}}"
+              ],
+              "path": [
+                "subscription-changes",
+                "CR-20261017-007"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"change_request_id\": \"CR-20261017-007\",\n    \"workspace_id\": \"WS-9081\",\n    \"change_type\": \"UPGRADE\",\n    \"source_plan_code\": \"BASIC\",\n    \"target_plan_code\": \"PRO\",\n    \"status\": \"ACTIVATION_PENDING\",\n    \"payment_confirmed_at\": \"2026-10-17T02:04:30Z\"\n}"
+        },
+        {
+          "name": "SUB_T08_TARGET_PRO",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "{{mock_example_name}}"
+              }
+            ],
+            "url": {
+              "raw": "{{mock_base_url}}/subscription-changes/CR-20261017-008",
+              "host": [
+                "{{mock_base_url}}"
+              ],
+              "path": [
+                "subscription-changes",
+                "CR-20261017-008"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"change_request_id\": \"CR-20261017-008\",\n    \"workspace_id\": \"WS-9081\",\n    \"change_type\": \"UPGRADE\",\n    \"source_plan_code\": \"BASIC\",\n    \"target_plan_code\": \"PRO\",\n    \"status\": \"ACTIVATION_PENDING\",\n    \"payment_confirmed_at\": \"2026-10-17T02:04:30Z\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Entitlement Application",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-mock-response-name",
+            "value": "{{mock_example_name}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{mock_base_url}}/entitlement-applications/:id",
+          "host": [
+            "{{mock_base_url}}"
+          ],
+          "path": [
+            "entitlement-applications",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "CR-20261017-001"
+            }
+          ]
+        },
+        "description": "Check target-plan entitlement provisioning status from Entitlement Service."
+      },
+      "response": [
+        {
+          "name": "ENT_T01_APPLIED",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "ENT_T01_APPLIED"
+              }
+            ],
+            "url": {
+              "raw": "{{mock_base_url}}/entitlement-applications/CR-20261017-001",
+              "host": [
+                "{{mock_base_url}}"
+              ],
+              "path": [
+                "entitlement-applications",
+                "CR-20261017-001"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"activation_id\": \"ACT-20261017-001\",\n  \"change_request_id\": \"CR-20261017-001\",\n  \"workspace_id\": \"WS-9081\",\n  \"target_plan_code\": \"PRO\",\n  \"status\": \"APPLIED\",\n  \"completed_at\": \"2026-10-17T02:05:15Z\"\n}"
+        },
+        {
+          "name": "ENT_T02_PENDING",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "ENT_T02_PENDING"
+              }
+            ],
+            "url": {
+              "raw": "{{mock_base_url}}/entitlement-applications/CR-20261017-002",
+              "host": [
+                "{{mock_base_url}}"
+              ],
+              "path": [
+                "entitlement-applications",
+                "CR-20261017-002"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"activation_id\": \"ACT-20261017-002\",\n  \"change_request_id\": \"CR-20261017-002\",\n  \"workspace_id\": \"WS-9081\",\n  \"target_plan_code\": \"PRO\",\n  \"status\": \"PENDING\",\n  \"completed_at\": null\n}"
+        },
+        {
+          "name": "ENT_T03_PENDING",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "ENT_T03_PENDING"
+              }
+            ],
+            "url": {
+              "raw": "{{mock_base_url}}/entitlement-applications/CR-20261017-003",
+              "host": [
+                "{{mock_base_url}}"
+              ],
+              "path": [
+                "entitlement-applications",
+                "CR-20261017-003"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"activation_id\": \"ACT-20261017-003\",\n  \"change_request_id\": \"CR-20261017-003\",\n  \"workspace_id\": \"WS-9081\",\n  \"target_plan_code\": \"PRO\",\n  \"status\": \"PENDING\",\n  \"completed_at\": null\n}"
+        },
+        {
+          "name": "ENT_T05_WS_MISMATCH",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "ENT_T05_WS_MISMATCH"
+              }
+            ],
+            "url": {
+              "raw": "{{mock_base_url}}/entitlement-applications/CR-20261017-005",
+              "host": [
+                "{{mock_base_url}}"
+              ],
+              "path": [
+                "entitlement-applications",
+                "CR-20261017-005"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"activation_id\": \"ACT-20261017-005\",\n  \"change_request_id\": \"CR-20261017-005\",\n  \"workspace_id\": \"WS-9999\",\n  \"target_plan_code\": \"PRO\",\n  \"status\": \"APPLIED\",\n  \"completed_at\": \"2026-10-17T02:05:00Z\"\n}"
+        },
+        {
+          "name": "ENT_T06_500_ERROR",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "ENT_T06_500_ERROR"
+              }
+            ],
+            "url": {
+              "raw": "{{mock_base_url}}/entitlement-applications/CR-20261017-006",
+              "host": [
+                "{{mock_base_url}}"
+              ],
+              "path": [
+                "entitlement-applications",
+                "CR-20261017-006"
+              ]
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"error_code\": \"SYS_INTERNAL_ERROR\",\n  \"message\": \"Entitlement database pool exhausted. Connection timed out.\"\n}"
+        },
+        {
+          "name": "ENT_T07_404_NOT_FOUND",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "ENT_T07_404_NOT_FOUND"
+              }
+            ],
+            "url": {
+              "raw": "{{mock_base_url}}/entitlement-applications/CR-20261017-007",
+              "host": [
+                "{{mock_base_url}}"
+              ],
+              "path": [
+                "entitlement-applications",
+                "CR-20261017-007"
+              ]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"error_code\": \"ENTITLEMENT_RECORD_NOT_FOUND\",\n  \"message\": \"No activation record found for change request CR-20261017-007\"\n}"
+        },
+        {
+          "name": "ENT_T08_WRONG_PLAN",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-mock-response-name",
+                "value": "ENT_T08_WRONG_PLAN"
+              }
+            ],
+            "url": {
+              "raw": "{{mock_base_url}}/entitlement-applications/CR-20261017-008",
+              "host": [
+                "{{mock_base_url}}"
+              ],
+              "path": [
+                "entitlement-applications",
+                "CR-20261017-008"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"activation_id\": \"ACT-20261017-008\",\n  \"change_request_id\": \"CR-20261017-008\",\n  \"workspace_id\": \"WS-9081\",\n  \"target_plan_code\": \"BASIC\",\n  \"status\": \"APPLIED\",\n  \"completed_at\": \"2026-10-17T02:05:00Z\"\n}"
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "mock_base_url",
+      "value": "https://YOUR_MOCK_SERVER_URL.mock.pstmn.io"
+    },
+    {
+      "key": "mock_example_name",
+      "value": "SUB_T01_PAID"
+    },
+    {
+      "key": "mock_base_url (old ver)",
+      "value": ""
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 schema_version: 1
-exported_at: "2026-10-30T00:07:54+07:00"
+exported_at: "2026-10-30T09:23:15+07:00"
 source_policy: "confluence-only"
 source_folder:
   id: "98311"
@@ -146,8 +146,14 @@ sources:
     title: "10. Technical PoC — Paid Upgrade Activation Monitoring"
     version: 9
     status: "current"
+    attachments:
+      - id: "att18481153"
+        title: "ApproveFlow — Activation Demo.postman_collection.json"
+        target: "poc-automation/postman/approveflow_mocks.json"
+        version: 1
+        media_type: "application/json"
+        file_size: 19423
+        sha256: "a4ddbb350bfd8f9c283a07b68dc18a0abd91c26eda91580237b5be7a8d51cf69"
 blocked_sources:
-  - target: "poc-automation/postman/approveflow_mocks.json"
-    reason: "No JSON attachment exists in Confluence folder 98311; page 14909445 links to an external Postman workspace only."
   - target: "poc-automation/n8n/workflow_export.json"
     reason: "No n8n JSON attachment exists in Confluence folder 98311; page 14909445 states the workflow is retained in the author's local environment."

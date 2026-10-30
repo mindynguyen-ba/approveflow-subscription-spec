@@ -4,7 +4,7 @@
 >
 > Evidence status: **BASELINED — SIMULATION** / **DESIGNED — NOT EXECUTED** unless a source section states otherwise.
 
-> **Package status: BLOCKED.** Confluence currently has no Postman collection JSON or n8n workflow JSON attachment. Add both files to the Technical PoC page before creating the release tag.
+> **Package status: BLOCKED.** The Postman collection is packaged from Confluence attachment `att18481153`; the n8n workflow JSON is still missing. Add the n8n export to the Technical PoC page before creating the release tag.
 
 ## Repository navigation
 
