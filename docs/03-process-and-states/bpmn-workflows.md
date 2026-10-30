@@ -1,6 +1,6 @@
 # BPMN Workflows
 
-> Source: [Process Models](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/131226) · Content ID `131226` · Version `13` · Status `current`
+> Source: [Process Models](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/131226) · Content ID `131226`
 
 ## Packaged workflows
 

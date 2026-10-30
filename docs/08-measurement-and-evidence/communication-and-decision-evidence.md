@@ -1,6 +1,6 @@
 # Communication & Decision Evidence
 
-> Source: [Communication & Decision Evidence](https://mindyworkflows.atlassian.net/wiki/pages/2981890) · Content ID `2981890` · Version `6` · Status `current`
+> Source: [Communication & Decision Evidence](https://mindyworkflows.atlassian.net/wiki/pages/2981890) · Content ID `2981890`
 
 **Ambiguity / Open Question → Stakeholder trade-off → Decision (DEC-xx) → Technical slices updated → Cockpit validation**
 

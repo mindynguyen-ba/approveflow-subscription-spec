@@ -1,6 +1,6 @@
 # Business Rules & Decision Tables
 
-> Source: [Business Rules & Decision Tables](https://mindyworkflows.atlassian.net/wiki/pages/98325) · Content ID `98325` · Version `18` · Status `current`
+> Source: [Business Rules & Decision Tables](https://mindyworkflows.atlassian.net/wiki/pages/98325) · Content ID `98325`
 
 
 

@@ -1,6 +1,6 @@
 # Functional Requirements
 
-> Source: [Functional Requirements](https://mindyworkflows.atlassian.net/wiki/pages/229429) · Content ID `229429` · Version `9` · Status `current`
+> Source: [Functional Requirements](https://mindyworkflows.atlassian.net/wiki/pages/229429) · Content ID `229429`
 
 **Module purpose:** Translate approved System Behaviors into testable Functional Requirements grouped by User Story. Detailed BDD Acceptance Criteria remain in Jira.
 

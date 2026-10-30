@@ -1,6 +1,6 @@
 # End-to-End System Behavior
 
-> Source: [End-to-End System Behavior](https://mindyworkflows.atlassian.net/wiki/pages/10092622) · Content ID `10092622` · Version `11` · Status `current`
+> Source: [End-to-End System Behavior](https://mindyworkflows.atlassian.net/wiki/pages/10092622) · Content ID `10092622`
 
 > **Purpose.** Translate approved rules, decisions, state transitions and exceptions into end-to-end behavior for implementation review, integration testing and E2E test design.
 

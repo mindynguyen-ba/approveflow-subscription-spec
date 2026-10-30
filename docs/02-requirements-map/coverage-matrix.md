@@ -1,6 +1,6 @@
 # Acceptance Criteria Coverage Matrix
 
-> Source: [Acceptance Criteria Coverage Matrix](https://mindyworkflows.atlassian.net/wiki/pages/5341219) · Content ID `5341219` · Version `6` · Status `current`
+> Source: [Acceptance Criteria Coverage Matrix](https://mindyworkflows.atlassian.net/wiki/pages/5341219) · Content ID `5341219`
 
 **Purpose:** Verify that Acceptance Criteria are defined for all 6 MVP User Stories. Detailed AC wording is maintained in Jira.
 

@@ -279,6 +279,15 @@ def validate_repository(root: Path) -> list[str]:
 
     for path in root.rglob("*.md"):
         if ".git" not in path.parts:
+            markdown = path.read_text(encoding="utf-8")
+            if any(
+                line.startswith("> Source:")
+                and (" · Version `" in line or " · Status `" in line)
+                for line in markdown.splitlines()
+            ):
+                errors.append(
+                    f"source metadata includes version/status: {path.relative_to(root).as_posix()}"
+                )
             errors.extend(_validate_links(root, path))
 
     return sorted(set(errors))

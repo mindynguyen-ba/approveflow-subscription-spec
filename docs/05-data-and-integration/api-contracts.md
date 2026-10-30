@@ -1,6 +1,6 @@
 # API Contracts
 
-> Source: [API, SQL & Sequence Analysis](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229453) · Content ID `229453` · Version `16` · Status `current`
+> Source: [API, SQL & Sequence Analysis](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229453) · Content ID `229453`
 
 DESIGNED — NOT EXECUTED Business-level contracts for analysis and testing. No endpoint call, database query, integration test or production validation has been executed.
 

@@ -1,6 +1,6 @@
 # PoC Automation
 
-> Source: [10. Technical PoC — Paid Upgrade Activation Monitoring](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/14909445) · Content ID `14909445` · Version `9` · Status `current`
+> Source: [10. Technical PoC — Paid Upgrade Activation Monitoring](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/14909445) · Content ID `14909445`
 
 > Packaging gate: the [Postman collection](postman/approveflow_mocks.json) and [n8n workflow](n8n/workflow_export.json) are sourced from Confluence attachments `att18481153` and `att18546689`. Both checksums are recorded in the source manifest.
 

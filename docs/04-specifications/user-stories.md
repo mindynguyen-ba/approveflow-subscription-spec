@@ -1,6 +1,6 @@
 # Jira Story Index
 
-> Source: [Jira Story Index](https://mindyworkflows.atlassian.net/wiki/pages/229437) · Content ID `229437` · Version `17` · Status `current`
+> Source: [Jira Story Index](https://mindyworkflows.atlassian.net/wiki/pages/229437) · Content ID `229437`
 
 Traceable index of the six User Stories maintained in Jira. Detailed story narratives and Gherkin Acceptance Criteria remain in Jira; this page defines the canonical Epic coverage, story boundary, SCR lifecycle outcome and verification target.
 

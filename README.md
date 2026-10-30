@@ -29,7 +29,7 @@ Final Confluence-hosted exports are packaged under `docs/assets/` for BPMN, Stat
 
 ## Confluence baseline
 
-> Source: [01. Project Home & Portfolio Summary](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/98315) · Content ID `98315` · Version `20` · Status `current`
+> Source: [01. Project Home & Portfolio Summary](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/98315) · Content ID `98315`
 
 **ApproveFlow — B2B SaaS Subscription Engine**  
 A traceable requirement baseline and architectural specification for self-service subscription lifecycle.

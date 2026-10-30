@@ -1,6 +1,6 @@
 # State Transition Models
 
-> Source: [State Transition Model Specification](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/131234) · Content ID `131234` · Version `18` · Status `current`
+> Source: [State Transition Model Specification](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/131234) · Content ID `131234`
 
 ## Rendered diagrams
 

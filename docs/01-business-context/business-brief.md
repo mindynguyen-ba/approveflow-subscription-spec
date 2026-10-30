@@ -1,6 +1,6 @@
 # Business Brief
 
-> Source: [Business Brief](https://mindyworkflows.atlassian.net/wiki/pages/229409) · Content ID `229409` · Version `14` · Status `current`
+> Source: [Business Brief](https://mindyworkflows.atlassian.net/wiki/pages/229409) · Content ID `229409`
 
 ApproveFlow is a fictional B2B client-approval platform for teams managing social media and content operations. This Business Brief defines an MVP that enables authorized Workspace Owners and Billing Admins to manage eligible subscription changes through a transparent self-service experience, reducing operational dependency on Customer Support, Finance and Operations.
 

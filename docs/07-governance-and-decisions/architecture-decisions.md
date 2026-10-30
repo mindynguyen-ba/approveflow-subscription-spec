@@ -1,6 +1,6 @@
 # Architecture & Business Decisions
 
-> Source: [Architecture & Business Decision Log](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229475) · Content ID `229475` · Version `16` · Status `current`
+> Source: [Architecture & Business Decision Log](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229475) · Content ID `229475`
 
 **BASELINED** — 20/20 decisions approved for the simulation baseline. These decisions govern the current portfolio artifacts; they do not represent production approval.
 

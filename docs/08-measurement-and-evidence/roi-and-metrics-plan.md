@@ -1,6 +1,6 @@
 # ROI & Measurement Plan
 
-> Source: [ROI & Measurement Plan](https://mindyworkflows.atlassian.net/wiki/pages/66158) · Content ID `66158` · Version `7` · Status `current`
+> Source: [ROI & Measurement Plan](https://mindyworkflows.atlassian.net/wiki/pages/66158) · Content ID `66158`
 
 Define how ApproveFlow MVP business value would be evaluated after release. The [Business Success Metrics](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229417/Scope+Stakeholders+Success+Metrics) define success; this page connects each metric to its evidence, owner and Day-90 decision.
 

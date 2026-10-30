@@ -1,6 +1,6 @@
 # Scope, Stakeholders & Success Metrics
 
-> Source: [Scope, Stakeholders & Success Metrics](https://mindyworkflows.atlassian.net/wiki/pages/229417) · Content ID `229417` · Version `14` · Status `current`
+> Source: [Scope, Stakeholders & Success Metrics](https://mindyworkflows.atlassian.net/wiki/pages/229417) · Content ID `229417`
 
 ## In-Scope Workflows
 

@@ -1,6 +1,6 @@
 # Change Requests
 
-> Source: [Change Requests](https://mindyworkflows.atlassian.net/wiki/pages/360497) · Content ID `360497` · Version `5` · Status `current`
+> Source: [Change Requests](https://mindyworkflows.atlassian.net/wiki/pages/360497) · Content ID `360497`
 
 This page records formal change requests raised after the approved requirements baseline. Each request must be impact-assessed before it is approved, rejected or deferred.
 

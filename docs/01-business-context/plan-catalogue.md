@@ -1,6 +1,6 @@
 # Plan Catalogue & Entitlement Matrix
 
-> Source: [Plan Catalogue & Entitlement Matrix](https://mindyworkflows.atlassian.net/wiki/pages/8192008) · Content ID `8192008` · Version `5` · Status `current`
+> Source: [Plan Catalogue & Entitlement Matrix](https://mindyworkflows.atlassian.net/wiki/pages/8192008) · Content ID `8192008`
 
 **Specification purpose:** This page is the configuration reference for ApproveFlow MVP plan hierarchy, commercial terms, usage quotas, feature entitlements, transition classification and downgrade enforcement. It supports pricing preview, entitlement activation and validation.
 

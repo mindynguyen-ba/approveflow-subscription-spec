@@ -1,6 +1,6 @@
 # Assumption Register
 
-> Source: [Assumption Register & Decision Traceability](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/131269) · Content ID `131269` · Version `15` · Status `current`
+> Source: [Assumption Register & Decision Traceability](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/131269) · Content ID `131269`
 
 **BASELINED REGISTER** — 25/25 assumptions classified: 24 superseded by approved simulation decisions and 1 validated. No assumption remains open.
 

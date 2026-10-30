@@ -1,6 +1,6 @@
 # Traceability Map
 
-> Source: [Traceability Map](https://mindyworkflows.atlassian.net/wiki/pages/16351237) · Content ID `16351237` · Version `4` · Status `current`
+> Source: [Traceability Map](https://mindyworkflows.atlassian.net/wiki/pages/16351237) · Content ID `16351237`
 
 **How to use:** Search by Slice ID or any artifact ID. Every item uses **ID — short meaning**; links open the canonical source only when deeper detail is required.
 

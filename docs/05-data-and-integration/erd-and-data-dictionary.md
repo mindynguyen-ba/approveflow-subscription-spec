@@ -1,6 +1,6 @@
 # ERD & Data Dictionary
 
-> Source: [ERD & Data Dictionary](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229445) · Content ID `229445` · Version `8` · Status `current`
+> Source: [ERD & Data Dictionary](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229445) · Content ID `229445`
 
 ## Packaged data models
 

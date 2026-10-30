@@ -275,6 +275,16 @@ class ValidateRepositoryTests(unittest.TestCase):
         self.fixture.write(target, "UAT-01 PASS\n")
         self.assertIn(f"missing evidence label: {target}", validator.validate_repository(self.root))
 
+    def test_rejects_source_version_and_status_in_markdown(self):
+        self.fixture.write(
+            "README.md",
+            "> Source: Project Home · Content ID `98315` · Version `20` · Status `current`\n",
+        )
+        self.assertIn(
+            "source metadata includes version/status: README.md",
+            validator.validate_repository(self.root),
+        )
+
     def test_valid_repository_has_no_errors(self):
         self.assertEqual([], validator.validate_repository(self.root))
 

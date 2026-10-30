@@ -1,6 +1,6 @@
 # Exception Matrix & Failure Recovery
 
-> Source: [Exception Matrix & Failure Recovery](https://mindyworkflows.atlassian.net/wiki/pages/5373964) · Content ID `5373964` · Version `10` · Status `current`
+> Source: [Exception Matrix & Failure Recovery](https://mindyworkflows.atlassian.net/wiki/pages/5373964) · Content ID `5373964`
 
 **Module purpose:** Define business exceptions, safe-state handling, customer outcomes and recovery ownership across upgrade, downgrade and recurring-payment recovery.
 

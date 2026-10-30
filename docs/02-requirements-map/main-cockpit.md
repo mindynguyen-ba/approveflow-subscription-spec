@@ -1,6 +1,6 @@
 # Main Cockpit Change-Ready
 
-> Source: [Main Cockpit Change-Ready](https://mindyworkflows.atlassian.net/wiki/pages/7110657) · Content ID `7110657` · Version `22` · Status `current`
+> Source: [Main Cockpit Change-Ready](https://mindyworkflows.atlassian.net/wiki/pages/7110657) · Content ID `7110657`
 
 | **Slice ID & Name** | **Ver** | **Before System Behavior** | **System Behavior** | **After System Behavior** | **Validation** | **Status** | **Change Ref** |
 | --- | --- | --- | --- | --- | --- | --- | --- |
