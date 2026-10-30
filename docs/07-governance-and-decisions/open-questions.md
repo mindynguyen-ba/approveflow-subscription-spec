@@ -1,3 +1,5 @@
+# Open Questions & Clarifications
+
 > Source: [Open Questions & Clarifications Register](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/360481) · Content ID `360481` · Version `18` · Status `current`
 
 **CLOSED REGISTER** — 27/27 questions answered. The repeated row-level Status column has been removed; every row now records the final resolution and its authoritative source.
