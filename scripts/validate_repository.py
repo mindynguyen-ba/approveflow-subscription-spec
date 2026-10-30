@@ -93,7 +93,8 @@ API_SOURCE_TARGETS = {
 SECRET_KEYS = re.compile(r"(?:api[_-]?key|authorization|password|secret|token)", re.IGNORECASE)
 PLACEHOLDERS = ("", "redacted", "changeme", "placeholder")
 MARKDOWN_LINK = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
-MANIFEST_TARGET = re.compile(r'^\s*-\s+target:\s+["\']?([^"\']+?)["\']?\s*$')
+MANIFEST_SOURCE_TARGET = re.compile(r'^  -\s+target:\s+["\']?([^"\']+?)["\']?\s*$')
+MANIFEST_ANY_TARGET = re.compile(r'^\s*-?\s*target:\s+["\']?([^"\']+?)["\']?\s*$')
 MANIFEST_CONTENT_ID = re.compile(r'^\s+content_id:\s+["\']?(\d+)["\']?\s*$')
 
 
@@ -161,7 +162,7 @@ def _manifest_records(path: Path) -> list[tuple[str, str]]:
     records: list[tuple[str, str]] = []
     pending_target: str | None = None
     for line in path.read_text(encoding="utf-8").splitlines():
-        target_match = MANIFEST_TARGET.match(line)
+        target_match = MANIFEST_SOURCE_TARGET.match(line)
         if target_match:
             pending_target = target_match.group(1)
             continue
@@ -170,6 +171,14 @@ def _manifest_records(path: Path) -> list[tuple[str, str]]:
             records.append((pending_target, content_match.group(1)))
             pending_target = None
     return records
+
+
+def _manifest_targets(path: Path) -> list[str]:
+    return [
+        match.group(1)
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if (match := MANIFEST_ANY_TARGET.match(line))
+    ]
 
 
 def validate_repository(root: Path) -> list[str]:
@@ -217,7 +226,7 @@ def validate_repository(root: Path) -> list[str]:
             count = targets.count(required)
             if count != 1:
                 errors.append(f"manifest target count: {required}: expected 1, found {count}")
-        for target in sorted(set(targets)):
+        for target in sorted(set(_manifest_targets(manifest_path))):
             if not (root / target).is_file():
                 errors.append(f"manifest target missing file: {target}")
         content_ids = {content_id for _, content_id in records}

@@ -203,6 +203,19 @@ class ValidateRepositoryTests(unittest.TestCase):
         )
         self.assertIn("manifest target missing file: docs/missing.md", validator.validate_repository(self.root))
 
+    def test_manifest_attachment_target_must_exist(self):
+        manifest = self.root / "docs/source-manifest.yaml"
+        manifest.write_text(
+            manifest.read_text(encoding="utf-8")
+            + '    attachments:\n      - id: "att-test"\n'
+            + '        target: "docs/assets/missing.png"\n',
+            encoding="utf-8",
+        )
+        self.assertIn(
+            "manifest target missing file: docs/assets/missing.png",
+            validator.validate_repository(self.root),
+        )
+
     def test_manifest_requires_25_distinct_content_ids(self):
         mapping = tuple(
             (target, "98315" if content_id == "2981890" else content_id)

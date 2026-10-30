@@ -1,54 +1,60 @@
-schema_version: 1
-exported_at: "2026-10-30T09:26:29+07:00"
+schema_version: 2
+exported_at: "2026-10-30T09:57:29+07:00"
 source_policy: "confluence-only"
 source_folder:
   id: "98311"
   title: "ApproveFlow — SaaS Subscription Management"
   url: "https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/folder/98311"
-  version: 1
   status: "current"
 canonical_counts:
+  confluence_content_ids: 25
   decisions: 20
   assumptions: 25
   clarifications: 27
   user_stories: 6
-  acceptance_criteria: 40
+  acceptance_criteria_defined: 40
   sql_invariants: 8
   uat_scenarios: 9
+limitations:
+  - "Detailed Gherkin Acceptance Criteria remain authoritative in Jira."
+  - "API contracts are business-level analysis contracts, not delivery-level OpenAPI/Swagger schemas."
 sources:
   - target: "README.md"
     content_id: "98315"
     title: "01. Project Home & Portfolio Summary"
     version: 20
     status: "current"
-  - target: "docs/01-scope-and-decisions/decisions-log.md"
-    content_id: "229475"
-    title: "Architecture & Business Decision Log"
-    version: 16
+  - target: "docs/01-business-context/business-brief.md"
+    content_id: "229409"
+    title: "Business Brief"
+    version: 14
     status: "current"
-  - target: "docs/01-scope-and-decisions/assumptions-log.md"
-    content_id: "131269"
-    title: "Assumption Register & Decision Traceability"
-    version: 15
+  - target: "docs/01-business-context/scope-and-metrics.md"
+    content_id: "229417"
+    title: "Scope, Stakeholders & Success Metrics"
+    version: 14
     status: "current"
-  - target: "docs/01-scope-and-decisions/open-questions.md"
-    content_id: "360481"
-    title: "Open Questions & Clarifications Register"
-    version: 18
+  - target: "docs/01-business-context/plan-catalogue.md"
+    content_id: "8192008"
+    title: "Plan Catalogue & Entitlement Matrix"
+    version: 5
     status: "current"
-  - target: "docs/02-process-and-states/state-machines.md"
-    content_id: "131234"
-    title: "State Transition Model Specification"
-    version: 18
+  - target: "docs/02-requirements-map/main-cockpit.md"
+    content_id: "7110657"
+    title: "Main Cockpit Change-Ready"
+    version: 22
     status: "current"
-    attachments:
-      - id: "att10092602"
-        target: "docs/assets/state-machines/state-subscription-lifecycle.png"
-        figma_node_id: "5:2"
-      - id: "att17858637"
-        target: "docs/assets/state-machines/state-change-request-lifecycle.png"
-        figma_node_id: "12:219"
-  - target: "docs/02-process-and-states/bpmn-workflows.md"
+  - target: "docs/02-requirements-map/traceability-map.md"
+    content_id: "16351237"
+    title: "Traceability Map"
+    version: 4
+    status: "current"
+  - target: "docs/02-requirements-map/coverage-matrix.md"
+    content_id: "5341219"
+    title: "Acceptance Criteria Coverage Matrix"
+    version: 6
+    status: "current"
+  - target: "docs/03-process-and-states/bpmn-workflows.md"
     content_id: "131226"
     title: "Process Models"
     version: 13
@@ -66,12 +72,44 @@ sources:
       - id: "att17825822"
         target: "docs/assets/bpmn/bpmn-payment-failure-recovery.png"
         figma_node_id: "210:774"
-  - target: "docs/03-specifications/user-stories-ac.md"
-    content_ids: ["229437", "5341219"]
-    titles: ["Jira Story Index", "Acceptance Criteria Coverage Matrix"]
-    versions: [17, 6]
+  - target: "docs/03-process-and-states/state-transition-models.md"
+    content_id: "131234"
+    title: "State Transition Model Specification"
+    version: 18
     status: "current"
-  - target: "docs/03-specifications/ux-specifications.md"
+    attachments:
+      - id: "att10092602"
+        target: "docs/assets/state-machines/state-subscription-lifecycle.png"
+        figma_node_id: "5:2"
+      - id: "att17858637"
+        target: "docs/assets/state-machines/state-change-request-lifecycle.png"
+        figma_node_id: "12:219"
+  - target: "docs/03-process-and-states/business-rules.md"
+    content_id: "98325"
+    title: "Business Rules & Decision Tables"
+    version: 18
+    status: "current"
+  - target: "docs/03-process-and-states/exception-matrix.md"
+    content_id: "5373964"
+    title: "Exception Matrix & Failure Recovery"
+    version: 10
+    status: "current"
+  - target: "docs/03-process-and-states/end-to-end-system-behavior.md"
+    content_id: "10092622"
+    title: "End-to-End System Behavior"
+    version: 11
+    status: "current"
+  - target: "docs/04-specifications/user-stories.md"
+    content_id: "229437"
+    title: "Jira Story Index"
+    version: 17
+    status: "current"
+  - target: "docs/04-specifications/functional-requirements.md"
+    content_id: "229429"
+    title: "Functional Requirements"
+    version: 9
+    status: "current"
+  - target: "docs/04-specifications/ui-state-specs.md"
     content_id: "66150"
     title: "Wireframes & UI States"
     version: 10
@@ -104,7 +142,7 @@ sources:
       - id: "att17858738"
         target: "docs/assets/ui-states/journey-03-ui-states.png"
         figma_node_id: "72:709"
-  - target: "docs/03-specifications/data-dictionary.md"
+  - target: "docs/05-data-and-integration/erd-and-data-dictionary.md"
     content_id: "229445"
     title: "ERD & Data Dictionary"
     version: 8
@@ -116,9 +154,14 @@ sources:
       - id: "att18153564"
         target: "docs/assets/erd/core-logical-erd.png"
         figma_node_id: "97:563"
-  - target: "docs/03-specifications/api-contracts.md"
+  - target: "docs/05-data-and-integration/api-contracts.md"
     content_id: "229453"
-    title: "API, SQL & Sequence Analysis"
+    title: "API, SQL & Sequence Analysis — API Contracts"
+    version: 16
+    status: "current"
+  - target: "docs/05-data-and-integration/sequence-diagrams.md"
+    content_id: "229453"
+    title: "API, SQL & Sequence Analysis — Sequence Diagrams"
     version: 16
     status: "current"
     attachments:
@@ -131,15 +174,45 @@ sources:
       - id: "att17826029"
         target: "docs/assets/sequence-diagrams/sd-03-scheduled-downgrade-execution.png"
         figma_node_id: "385:2201"
-  - target: "docs/03-specifications/sql-invariants.md"
+  - target: "docs/05-data-and-integration/sql-invariants.md"
     content_id: "229453"
-    title: "API, SQL & Sequence Analysis"
+    title: "API, SQL & Sequence Analysis — SQL Invariants"
     version: 16
     status: "current"
-  - target: "docs/04-testing-and-uat/uat-specification.md"
+  - target: "docs/06-validation-and-uat/uat-specification.md"
     content_id: "98340"
     title: "User Acceptance Testing (UAT) Specification"
     version: 7
+    status: "current"
+  - target: "docs/07-governance-and-decisions/architecture-decisions.md"
+    content_id: "229475"
+    title: "Architecture & Business Decision Log"
+    version: 16
+    status: "current"
+  - target: "docs/07-governance-and-decisions/assumption-register.md"
+    content_id: "131269"
+    title: "Assumption Register & Decision Traceability"
+    version: 15
+    status: "current"
+  - target: "docs/07-governance-and-decisions/open-questions.md"
+    content_id: "360481"
+    title: "Open Questions & Clarifications Register"
+    version: 18
+    status: "current"
+  - target: "docs/07-governance-and-decisions/change-requests.md"
+    content_id: "360497"
+    title: "Change Requests"
+    version: 5
+    status: "current"
+  - target: "docs/08-measurement-and-evidence/roi-and-metrics-plan.md"
+    content_id: "66158"
+    title: "ROI & Measurement Plan"
+    version: 7
+    status: "current"
+  - target: "docs/08-measurement-and-evidence/communication-and-decision-evidence.md"
+    content_id: "2981890"
+    title: "Communication & Decision Evidence"
+    version: 6
     status: "current"
   - target: "poc-automation/README.md"
     content_id: "14909445"

@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.0 — 2026-10-30
+
+### Changed
+
+- Reorganized documentation into eight groups matching the Confluence information architecture.
+- Expanded the mirror to cover all 25 current Confluence content IDs.
+- Split API, sequence and SQL concerns into focused Markdown documents without fabricating OpenAPI schemas.
+- Preserved `docs/assets/` and `poc-automation/` paths and content byte-for-byte.
+- Updated repository validation to enforce target provenance, legacy-path removal and canonical counts.
+
 ## 1.0.0 — 2026-10-30
 
 ### Added

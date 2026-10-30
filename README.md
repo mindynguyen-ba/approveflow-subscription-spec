@@ -8,13 +8,18 @@
 
 ## Repository navigation
 
-- [Scope and decisions](docs/01-scope-and-decisions/decisions-log.md)
-- [Process and states](docs/02-process-and-states/state-machines.md)
-- [Specifications](docs/03-specifications/user-stories-ac.md)
-- [UX specifications](docs/03-specifications/ux-specifications.md)
-- [Testing and UAT](docs/04-testing-and-uat/uat-specification.md)
+- [Business context](docs/01-business-context/business-brief.md)
+- [Requirements map](docs/02-requirements-map/main-cockpit.md)
+- [Process and states](docs/03-process-and-states/bpmn-workflows.md)
+- [Specifications](docs/04-specifications/user-stories.md)
+- [Data and integration](docs/05-data-and-integration/erd-and-data-dictionary.md)
+- [Validation and UAT](docs/06-validation-and-uat/uat-specification.md)
+- [Governance and decisions](docs/07-governance-and-decisions/architecture-decisions.md)
+- [Measurement and evidence](docs/08-measurement-and-evidence/roi-and-metrics-plan.md)
 - [PoC automation](poc-automation/README.md)
 - [Source manifest](docs/source-manifest.yaml)
+
+This mirror packages business-level API contracts and AC coverage from Confluence. Delivery-level OpenAPI/JSON Schema and detailed Jira Gherkin remain outside the repository until their authoritative sources are approved.
 
 ## Diagram registry
 
