@@ -10,12 +10,31 @@ REQUIRED_FILES = (
     "README.md",
     "CHANGELOG.md",
     "docs/source-manifest.yaml",
-    "docs/01-scope-and-decisions/decisions-log.md",
-    "docs/01-scope-and-decisions/assumptions-log.md",
-    "docs/01-scope-and-decisions/open-questions.md",
-    "docs/02-process-and-states/state-machines.md",
-    "docs/02-process-and-states/bpmn-workflows.md",
-    "docs/03-specifications/ux-specifications.md",
+    "docs/01-business-context/business-brief.md",
+    "docs/01-business-context/scope-and-metrics.md",
+    "docs/01-business-context/plan-catalogue.md",
+    "docs/02-requirements-map/main-cockpit.md",
+    "docs/02-requirements-map/traceability-map.md",
+    "docs/02-requirements-map/coverage-matrix.md",
+    "docs/03-process-and-states/bpmn-workflows.md",
+    "docs/03-process-and-states/state-transition-models.md",
+    "docs/03-process-and-states/business-rules.md",
+    "docs/03-process-and-states/exception-matrix.md",
+    "docs/03-process-and-states/end-to-end-system-behavior.md",
+    "docs/04-specifications/user-stories.md",
+    "docs/04-specifications/functional-requirements.md",
+    "docs/04-specifications/ui-state-specs.md",
+    "docs/05-data-and-integration/erd-and-data-dictionary.md",
+    "docs/05-data-and-integration/api-contracts.md",
+    "docs/05-data-and-integration/sequence-diagrams.md",
+    "docs/05-data-and-integration/sql-invariants.md",
+    "docs/06-validation-and-uat/uat-specification.md",
+    "docs/07-governance-and-decisions/architecture-decisions.md",
+    "docs/07-governance-and-decisions/assumption-register.md",
+    "docs/07-governance-and-decisions/open-questions.md",
+    "docs/07-governance-and-decisions/change-requests.md",
+    "docs/08-measurement-and-evidence/roi-and-metrics-plan.md",
+    "docs/08-measurement-and-evidence/communication-and-decision-evidence.md",
     "docs/assets/bpmn/bpmn-as-is-subscription-management.png",
     "docs/assets/bpmn/bpmn-self-service-upgrade.png",
     "docs/assets/state-machines/state-subscription-lifecycle.png",
@@ -36,33 +55,46 @@ REQUIRED_FILES = (
     "docs/assets/sequence-diagrams/sd-01-upgrade-payment-activation.png",
     "docs/assets/sequence-diagrams/sd-02-payment-recovery-access-restoration.png",
     "docs/assets/sequence-diagrams/sd-03-scheduled-downgrade-execution.png",
-    "docs/03-specifications/user-stories-ac.md",
-    "docs/03-specifications/data-dictionary.md",
-    "docs/03-specifications/api-contracts.md",
-    "docs/03-specifications/sql-invariants.md",
-    "docs/04-testing-and-uat/uat-specification.md",
     "poc-automation/README.md",
     "poc-automation/postman/approveflow_mocks.json",
     "poc-automation/n8n/workflow_export.json",
 )
 
 ID_CONTRACTS = (
-    ("DEC", 20, "docs/01-scope-and-decisions/decisions-log.md"),
-    ("ASM", 25, "docs/01-scope-and-decisions/assumptions-log.md"),
-    ("OQ", 27, "docs/01-scope-and-decisions/open-questions.md"),
-    ("US", 6, "docs/03-specifications/user-stories-ac.md"),
-    ("SQL", 8, "docs/03-specifications/sql-invariants.md"),
-    ("UAT", 9, "docs/04-testing-and-uat/uat-specification.md"),
+    ("DEC", 20, "docs/07-governance-and-decisions/architecture-decisions.md"),
+    ("ASM", 25, "docs/07-governance-and-decisions/assumption-register.md"),
+    ("OQ", 27, "docs/07-governance-and-decisions/open-questions.md"),
+    ("US", 6, "docs/04-specifications/user-stories.md"),
+    ("SQL", 8, "docs/05-data-and-integration/sql-invariants.md"),
+    ("UAT", 9, "docs/06-validation-and-uat/uat-specification.md"),
 )
 
 EVIDENCE_FILES = (
-    "docs/03-specifications/api-contracts.md",
-    "docs/04-testing-and-uat/uat-specification.md",
+    "docs/05-data-and-integration/api-contracts.md",
+    "docs/06-validation-and-uat/uat-specification.md",
 )
+
+SOURCE_TARGETS = tuple(
+    relative for relative in REQUIRED_FILES
+    if relative == "README.md" or relative.endswith(".md") and relative != "CHANGELOG.md"
+)
+SUPERSEDED_DOC_DIRS = (
+    "docs/01-scope-and-decisions",
+    "docs/02-process-and-states",
+    "docs/03-specifications",
+    "docs/04-testing-and-uat",
+)
+API_SOURCE_TARGETS = {
+    "docs/05-data-and-integration/api-contracts.md",
+    "docs/05-data-and-integration/sequence-diagrams.md",
+    "docs/05-data-and-integration/sql-invariants.md",
+}
 
 SECRET_KEYS = re.compile(r"(?:api[_-]?key|authorization|password|secret|token)", re.IGNORECASE)
 PLACEHOLDERS = ("", "redacted", "changeme", "placeholder")
 MARKDOWN_LINK = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
+MANIFEST_TARGET = re.compile(r'^\s*-\s+target:\s+["\']?([^"\']+?)["\']?\s*$')
+MANIFEST_CONTENT_ID = re.compile(r'^\s+content_id:\s+["\']?(\d+)["\']?\s*$')
 
 
 def _record_ids(text: str, prefix: str) -> list[str]:
@@ -121,6 +153,21 @@ def _validate_links(root: Path, path: Path) -> list[str]:
     return errors
 
 
+def _manifest_records(path: Path) -> list[tuple[str, str]]:
+    records: list[tuple[str, str]] = []
+    pending_target: str | None = None
+    for line in path.read_text(encoding="utf-8").splitlines():
+        target_match = MANIFEST_TARGET.match(line)
+        if target_match:
+            pending_target = target_match.group(1)
+            continue
+        content_match = MANIFEST_CONTENT_ID.match(line)
+        if content_match and pending_target:
+            records.append((pending_target, content_match.group(1)))
+            pending_target = None
+    return records
+
+
 def validate_repository(root: Path) -> list[str]:
     root = root.resolve()
     errors: list[str] = []
@@ -128,6 +175,13 @@ def validate_repository(root: Path) -> list[str]:
     for relative in REQUIRED_FILES:
         if not (root / relative).is_file():
             errors.append(f"missing required file: {relative}")
+
+    for directory in SUPERSEDED_DOC_DIRS:
+        legacy_root = root / directory
+        if legacy_root.is_dir():
+            for path in legacy_root.rglob("*"):
+                if path.is_file():
+                    errors.append(f"superseded documentation path: {path.relative_to(root).as_posix()}")
 
     for prefix, expected, relative in ID_CONTRACTS:
         path = root / relative
@@ -142,14 +196,32 @@ def validate_repository(root: Path) -> list[str]:
         if len(seen) != expected:
             errors.append(f"{prefix} count: expected {expected}, found {len(seen)}")
 
-    stories_path = root / "docs/03-specifications/user-stories-ac.md"
-    if stories_path.is_file() and "40/40 AC defined" not in stories_path.read_text(encoding="utf-8"):
+    coverage_path = root / "docs/02-requirements-map/coverage-matrix.md"
+    if coverage_path.is_file() and "40/40 AC defined" not in coverage_path.read_text(encoding="utf-8"):
         errors.append("AC count: expected evidence '40/40 AC defined'")
 
     for relative in EVIDENCE_FILES:
         path = root / relative
         if path.is_file() and "DESIGNED — NOT EXECUTED" not in path.read_text(encoding="utf-8"):
             errors.append(f"missing evidence label: {relative}")
+
+    manifest_path = root / "docs/source-manifest.yaml"
+    if manifest_path.is_file():
+        records = _manifest_records(manifest_path)
+        targets = [target for target, _ in records]
+        for required in SOURCE_TARGETS:
+            count = targets.count(required)
+            if count != 1:
+                errors.append(f"manifest target count: {required}: expected 1, found {count}")
+        for target in sorted(set(targets)):
+            if not (root / target).is_file():
+                errors.append(f"manifest target missing file: {target}")
+        content_ids = {content_id for _, content_id in records}
+        if len(content_ids) != 25:
+            errors.append(f"manifest content IDs: expected 25 distinct, found {len(content_ids)}")
+        api_targets = {target for target, content_id in records if content_id == "229453"}
+        if api_targets != API_SOURCE_TARGETS:
+            errors.append("manifest content 229453 targets mismatch")
 
     for path in root.rglob("*.json"):
         if ".git" not in path.parts:

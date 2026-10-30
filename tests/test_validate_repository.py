@@ -12,23 +12,35 @@ SPEC.loader.exec_module(validator)
 
 
 class RepositoryFixture:
-    REQUIRED_TEXT = {
-        "README.md": "# ApproveFlow\n\nDESIGNED — NOT EXECUTED\n",
-        "docs/source-manifest.yaml": "source_folder_id: '98311'\n",
-        "docs/01-scope-and-decisions/decisions-log.md": "",
-        "docs/01-scope-and-decisions/assumptions-log.md": "",
-        "docs/01-scope-and-decisions/open-questions.md": "",
-        "docs/02-process-and-states/state-machines.md": "",
-        "docs/02-process-and-states/bpmn-workflows.md": "",
-        "docs/03-specifications/user-stories-ac.md": "40/40 AC defined\n",
-        "docs/03-specifications/ux-specifications.md": "# UX Specifications\n",
-        "docs/03-specifications/data-dictionary.md": "",
-        "docs/03-specifications/api-contracts.md": "DESIGNED — NOT EXECUTED\n",
-        "docs/03-specifications/sql-invariants.md": "",
-        "docs/04-testing-and-uat/uat-specification.md": "DESIGNED — NOT EXECUTED\n",
-        "poc-automation/README.md": "Mock-only prototype.\n",
-        "CHANGELOG.md": "# Changelog\n",
-    }
+    SOURCE_MAPPING = (
+        ("README.md", "98315"),
+        ("docs/01-business-context/business-brief.md", "229409"),
+        ("docs/01-business-context/scope-and-metrics.md", "229417"),
+        ("docs/01-business-context/plan-catalogue.md", "8192008"),
+        ("docs/02-requirements-map/main-cockpit.md", "7110657"),
+        ("docs/02-requirements-map/traceability-map.md", "16351237"),
+        ("docs/02-requirements-map/coverage-matrix.md", "5341219"),
+        ("docs/03-process-and-states/bpmn-workflows.md", "131226"),
+        ("docs/03-process-and-states/state-transition-models.md", "131234"),
+        ("docs/03-process-and-states/business-rules.md", "98325"),
+        ("docs/03-process-and-states/exception-matrix.md", "5373964"),
+        ("docs/03-process-and-states/end-to-end-system-behavior.md", "10092622"),
+        ("docs/04-specifications/user-stories.md", "229437"),
+        ("docs/04-specifications/functional-requirements.md", "229429"),
+        ("docs/04-specifications/ui-state-specs.md", "66150"),
+        ("docs/05-data-and-integration/erd-and-data-dictionary.md", "229445"),
+        ("docs/05-data-and-integration/api-contracts.md", "229453"),
+        ("docs/05-data-and-integration/sequence-diagrams.md", "229453"),
+        ("docs/05-data-and-integration/sql-invariants.md", "229453"),
+        ("docs/06-validation-and-uat/uat-specification.md", "98340"),
+        ("docs/07-governance-and-decisions/architecture-decisions.md", "229475"),
+        ("docs/07-governance-and-decisions/assumption-register.md", "131269"),
+        ("docs/07-governance-and-decisions/open-questions.md", "360481"),
+        ("docs/07-governance-and-decisions/change-requests.md", "360497"),
+        ("docs/08-measurement-and-evidence/roi-and-metrics-plan.md", "66158"),
+        ("docs/08-measurement-and-evidence/communication-and-decision-evidence.md", "2981890"),
+        ("poc-automation/README.md", "14909445"),
+    )
 
     REQUIRED_ASSETS = (
         "docs/assets/bpmn/bpmn-as-is-subscription-management.png",
@@ -61,34 +73,44 @@ class RepositoryFixture:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(content, encoding="utf-8")
 
+    def write_manifest(self, mapping=None) -> None:
+        records = mapping if mapping is not None else self.SOURCE_MAPPING
+        lines = ["schema_version: 1", "sources:"]
+        for target, content_id in records:
+            lines.extend((f'  - target: "{target}"', f'    content_id: "{content_id}"'))
+        self.write("docs/source-manifest.yaml", "\n".join(lines) + "\n")
+
     def build_valid(self) -> None:
-        for relative, content in self.REQUIRED_TEXT.items():
-            self.write(relative, content)
+        for target, _ in self.SOURCE_MAPPING:
+            self.write(target, f"# {Path(target).stem}\n")
+        self.write("CHANGELOG.md", "# Changelog\n")
+        self.write_manifest()
         for relative in self.REQUIRED_ASSETS:
             self.write(relative, "test image placeholder")
         self.write(
-            "docs/01-scope-and-decisions/decisions-log.md",
+            "docs/07-governance-and-decisions/architecture-decisions.md",
             "\n".join(f"DEC-TEST-{index:02d}" for index in range(1, 21)),
         )
         self.write(
-            "docs/01-scope-and-decisions/assumptions-log.md",
+            "docs/07-governance-and-decisions/assumption-register.md",
             "\n".join(f"ASM-TEST-{index:02d}" for index in range(1, 26)),
         )
         self.write(
-            "docs/01-scope-and-decisions/open-questions.md",
+            "docs/07-governance-and-decisions/open-questions.md",
             "\n".join(f"OQ-TEST-{index:02d}" for index in range(1, 28)),
         )
         self.write(
-            "docs/03-specifications/user-stories-ac.md",
-            "\n".join(f"US-{index:02d}" for index in range(1, 7))
-            + "\n40/40 AC defined\n",
+            "docs/04-specifications/user-stories.md",
+            "\n".join(f"US-{index:02d}" for index in range(1, 7)),
         )
+        self.write("docs/02-requirements-map/coverage-matrix.md", "40/40 AC defined\n")
         self.write(
-            "docs/03-specifications/sql-invariants.md",
+            "docs/05-data-and-integration/sql-invariants.md",
             "\n".join(f"SQL-{index:02d}" for index in range(1, 9)),
         )
+        self.write("docs/05-data-and-integration/api-contracts.md", "DESIGNED — NOT EXECUTED\n")
         self.write(
-            "docs/04-testing-and-uat/uat-specification.md",
+            "docs/06-validation-and-uat/uat-specification.md",
             "DESIGNED — NOT EXECUTED\n"
             + "\n".join(f"UAT-{index:02d}" for index in range(1, 10)),
         )
@@ -116,6 +138,16 @@ class ValidateRepositoryTests(unittest.TestCase):
         (self.root / "README.md").unlink()
         self.assertIn("missing required file: README.md", validator.validate_repository(self.root))
 
+    def test_requires_new_mirror_path(self):
+        missing = "docs/01-business-context/business-brief.md"
+        (self.root / missing).unlink()
+        self.assertIn(f"missing required file: {missing}", validator.validate_repository(self.root))
+
+    def test_rejects_superseded_documentation_path(self):
+        legacy = "docs/01-scope-and-decisions/decisions-log.md"
+        self.fixture.write(legacy, "legacy")
+        self.assertIn(f"superseded documentation path: {legacy}", validator.validate_repository(self.root))
+
     def test_requires_canonical_docs_asset_layout(self):
         missing = "docs/assets/state-machines/state-subscription-lifecycle.png"
         (self.root / missing).unlink()
@@ -123,7 +155,7 @@ class ValidateRepositoryTests(unittest.TestCase):
 
     def test_requires_all_seven_diagram_groups_and_ux_specification(self):
         dfd = "docs/assets/dfd/logical-dfd-subscription-management.png"
-        ux_spec = "docs/03-specifications/ux-specifications.md"
+        ux_spec = "docs/04-specifications/ui-state-specs.md"
         (self.root / dfd).unlink()
         (self.root / ux_spec).unlink()
         errors = validator.validate_repository(self.root)
@@ -131,30 +163,64 @@ class ValidateRepositoryTests(unittest.TestCase):
         self.assertIn(f"missing required file: {ux_spec}", errors)
 
     def test_reports_duplicate_stable_id_even_when_total_occurrences_match(self):
-        path = self.root / "docs/01-scope-and-decisions/decisions-log.md"
+        path = self.root / "docs/07-governance-and-decisions/architecture-decisions.md"
         ids = [f"DEC-TEST-{index:02d}" for index in range(1, 20)] + ["DEC-TEST-19"]
         path.write_text("\n".join(ids), encoding="utf-8")
-        errors = validator.validate_repository(self.root)
-        self.assertIn("duplicate DEC id: DEC-TEST-19", errors)
+        self.assertIn("duplicate DEC id: DEC-TEST-19", validator.validate_repository(self.root))
 
     def test_accepts_confluence_table_ids_wrapped_in_backticks(self):
-        path = self.root / "docs/01-scope-and-decisions/decisions-log.md"
+        path = self.root / "docs/07-governance-and-decisions/architecture-decisions.md"
         rows = [f"| `DEC-TEST-{index:02d}` | Decision {index} |" for index in range(1, 21)]
         path.write_text("\n".join(rows), encoding="utf-8")
-        errors = validator.validate_repository(self.root)
-        self.assertNotIn("DEC count: expected 20, found 0", errors)
+        self.assertNotIn("DEC count: expected 20, found 0", validator.validate_repository(self.root))
 
     def test_accepts_sql_ids_in_exported_sql_comments(self):
-        path = self.root / "docs/03-specifications/sql-invariants.md"
+        path = self.root / "docs/05-data-and-integration/sql-invariants.md"
         rows = [f"-- SQL-{index:02d} · invariant {index}" for index in range(1, 9)]
         path.write_text("\n".join(rows), encoding="utf-8")
-        errors = validator.validate_repository(self.root)
-        self.assertNotIn("SQL count: expected 8, found 0", errors)
+        self.assertNotIn("SQL count: expected 8, found 0", validator.validate_repository(self.root))
 
     def test_reports_canonical_count_mismatch(self):
-        path = self.root / "docs/01-scope-and-decisions/assumptions-log.md"
+        path = self.root / "docs/07-governance-and-decisions/assumption-register.md"
         path.write_text("\n".join(f"ASM-TEST-{i:02d}" for i in range(1, 25)), encoding="utf-8")
         self.assertIn("ASM count: expected 25, found 24", validator.validate_repository(self.root))
+
+    def test_manifest_requires_each_source_target_once(self):
+        missing = "docs/01-business-context/business-brief.md"
+        mapping = tuple(record for record in self.fixture.SOURCE_MAPPING if record[0] != missing)
+        self.fixture.write_manifest(mapping)
+        self.assertIn(
+            f"manifest target count: {missing}: expected 1, found 0",
+            validator.validate_repository(self.root),
+        )
+
+    def test_manifest_target_must_exist(self):
+        manifest = self.root / "docs/source-manifest.yaml"
+        manifest.write_text(
+            manifest.read_text(encoding="utf-8")
+            + '  - target: "docs/missing.md"\n    content_id: "98315"\n',
+            encoding="utf-8",
+        )
+        self.assertIn("manifest target missing file: docs/missing.md", validator.validate_repository(self.root))
+
+    def test_manifest_requires_25_distinct_content_ids(self):
+        mapping = tuple(
+            (target, "98315" if content_id == "2981890" else content_id)
+            for target, content_id in self.fixture.SOURCE_MAPPING
+        )
+        self.fixture.write_manifest(mapping)
+        self.assertIn(
+            "manifest content IDs: expected 25 distinct, found 24",
+            validator.validate_repository(self.root),
+        )
+
+    def test_api_page_must_map_to_three_approved_targets(self):
+        mapping = tuple(
+            (target, "999999" if target.endswith("sequence-diagrams.md") else content_id)
+            for target, content_id in self.fixture.SOURCE_MAPPING
+        )
+        self.fixture.write_manifest(mapping)
+        self.assertIn("manifest content 229453 targets mismatch", validator.validate_repository(self.root))
 
     def test_reports_broken_relative_markdown_link(self):
         self.fixture.write("README.md", "[Missing](docs/missing.md)\nDESIGNED — NOT EXECUTED\n")
@@ -176,9 +242,9 @@ class ValidateRepositoryTests(unittest.TestCase):
         )
 
     def test_requires_not_executed_evidence_label(self):
-        self.fixture.write("docs/04-testing-and-uat/uat-specification.md", "UAT-01 PASS\n")
-        errors = validator.validate_repository(self.root)
-        self.assertIn("missing evidence label: docs/04-testing-and-uat/uat-specification.md", errors)
+        target = "docs/06-validation-and-uat/uat-specification.md"
+        self.fixture.write(target, "UAT-01 PASS\n")
+        self.assertIn(f"missing evidence label: {target}", validator.validate_repository(self.root))
 
     def test_valid_repository_has_no_errors(self):
         self.assertEqual([], validator.validate_repository(self.root))
