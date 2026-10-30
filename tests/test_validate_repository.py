@@ -235,6 +235,22 @@ class ValidateRepositoryTests(unittest.TestCase):
         self.fixture.write_manifest(mapping)
         self.assertIn("manifest content 229453 targets mismatch", validator.validate_repository(self.root))
 
+    def test_manifest_rejects_swapped_source_ids(self):
+        swapped = {
+            "docs/01-business-context/business-brief.md": "229417",
+            "docs/01-business-context/scope-and-metrics.md": "229409",
+        }
+        mapping = tuple(
+            (target, swapped.get(target, content_id))
+            for target, content_id in self.fixture.SOURCE_MAPPING
+        )
+        self.fixture.write_manifest(mapping)
+        self.assertIn(
+            "manifest source mapping mismatch: docs/01-business-context/business-brief.md: "
+            "expected 229409, found 229417",
+            validator.validate_repository(self.root),
+        )
+
     def test_reports_broken_relative_markdown_link(self):
         self.fixture.write("README.md", "[Missing](docs/missing.md)\nDESIGNED — NOT EXECUTED\n")
         self.assertIn("broken relative link: README.md -> docs/missing.md", validator.validate_repository(self.root))

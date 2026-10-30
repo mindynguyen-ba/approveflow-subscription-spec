@@ -89,6 +89,35 @@ API_SOURCE_TARGETS = {
     "docs/05-data-and-integration/sequence-diagrams.md",
     "docs/05-data-and-integration/sql-invariants.md",
 }
+EXPECTED_SOURCE_MAPPING = {
+    "README.md": "98315",
+    "docs/01-business-context/business-brief.md": "229409",
+    "docs/01-business-context/scope-and-metrics.md": "229417",
+    "docs/01-business-context/plan-catalogue.md": "8192008",
+    "docs/02-requirements-map/main-cockpit.md": "7110657",
+    "docs/02-requirements-map/traceability-map.md": "16351237",
+    "docs/02-requirements-map/coverage-matrix.md": "5341219",
+    "docs/03-process-and-states/bpmn-workflows.md": "131226",
+    "docs/03-process-and-states/state-transition-models.md": "131234",
+    "docs/03-process-and-states/business-rules.md": "98325",
+    "docs/03-process-and-states/exception-matrix.md": "5373964",
+    "docs/03-process-and-states/end-to-end-system-behavior.md": "10092622",
+    "docs/04-specifications/user-stories.md": "229437",
+    "docs/04-specifications/functional-requirements.md": "229429",
+    "docs/04-specifications/ui-state-specs.md": "66150",
+    "docs/05-data-and-integration/erd-and-data-dictionary.md": "229445",
+    "docs/05-data-and-integration/api-contracts.md": "229453",
+    "docs/05-data-and-integration/sequence-diagrams.md": "229453",
+    "docs/05-data-and-integration/sql-invariants.md": "229453",
+    "docs/06-validation-and-uat/uat-specification.md": "98340",
+    "docs/07-governance-and-decisions/architecture-decisions.md": "229475",
+    "docs/07-governance-and-decisions/assumption-register.md": "131269",
+    "docs/07-governance-and-decisions/open-questions.md": "360481",
+    "docs/07-governance-and-decisions/change-requests.md": "360497",
+    "docs/08-measurement-and-evidence/roi-and-metrics-plan.md": "66158",
+    "docs/08-measurement-and-evidence/communication-and-decision-evidence.md": "2981890",
+    "poc-automation/README.md": "14909445",
+}
 
 SECRET_KEYS = re.compile(r"(?:api[_-]?key|authorization|password|secret|token)", re.IGNORECASE)
 PLACEHOLDERS = ("", "redacted", "changeme", "placeholder")
@@ -226,6 +255,14 @@ def validate_repository(root: Path) -> list[str]:
             count = targets.count(required)
             if count != 1:
                 errors.append(f"manifest target count: {required}: expected 1, found {count}")
+        actual_mapping = dict(records)
+        for target, expected_content_id in EXPECTED_SOURCE_MAPPING.items():
+            actual_content_id = actual_mapping.get(target)
+            if actual_content_id is not None and actual_content_id != expected_content_id:
+                errors.append(
+                    f"manifest source mapping mismatch: {target}: "
+                    f"expected {expected_content_id}, found {actual_content_id}"
+                )
         for target in sorted(set(_manifest_targets(manifest_path))):
             if not (root / target).is_file():
                 errors.append(f"manifest target missing file: {target}")
