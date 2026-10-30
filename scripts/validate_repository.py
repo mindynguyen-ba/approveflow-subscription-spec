@@ -98,6 +98,10 @@ MANIFEST_CONTENT_ID = re.compile(r'^\s+content_id:\s+["\']?(\d+)["\']?\s*$')
 
 
 def _record_ids(text: str, prefix: str) -> list[str]:
+    if prefix == "US":
+        table_ids = re.findall(r"^\s*\|.*?\b(US-[0-9]+)\b", text, re.MULTILINE)
+        if table_ids:
+            return table_ids
     pattern = re.compile(
         rf"^\s*(?:(?:\|\s*)|(?:--\s+))?(?:`|\*\*)?({prefix}-[A-Z0-9]+(?:[.-][A-Z0-9]+)*)\b",
         re.MULTILINE,

@@ -1,4 +1,4 @@
-# UX Specifications
+# UI State Specifications
 
 > Source: [Wireframes & UI States](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/66150) · Content ID `66150` · Version `10` · Status `current`
 
