@@ -4,20 +4,19 @@
 >
 > Evidence status: **BASELINED — SIMULATION** / **DESIGNED — NOT EXECUTED** unless a source section states otherwise.
 
-> **Package status: READY FOR REMOTE.** Postman and n8n JSON artifacts are packaged from Confluence attachments with checksums recorded in the source manifest. A Git remote is still required before push.
-
 ## Repository navigation
 
-- [Business context](docs/01-business-context/business-brief.md)
-- [Requirements map](docs/02-requirements-map/main-cockpit.md)
-- [Process and states](docs/03-process-and-states/bpmn-workflows.md)
-- [Specifications](docs/04-specifications/user-stories.md)
-- [Data and integration](docs/05-data-and-integration/erd-and-data-dictionary.md)
-- [Validation and UAT](docs/06-validation-and-uat/uat-specification.md)
-- [Governance and decisions](docs/07-governance-and-decisions/architecture-decisions.md)
-- [Measurement and evidence](docs/08-measurement-and-evidence/roi-and-metrics-plan.md)
-- [PoC automation](poc-automation/README.md)
-- [Source manifest](docs/source-manifest.yaml)
+| Area | Repository documents |
+| --- | --- |
+| Business context | [Business Brief](docs/01-business-context/business-brief.md) · [Scope and Metrics](docs/01-business-context/scope-and-metrics.md) · [Plan Catalogue](docs/01-business-context/plan-catalogue.md) |
+| Requirements map | [Main Cockpit](docs/02-requirements-map/main-cockpit.md) · [Traceability Map](docs/02-requirements-map/traceability-map.md) · [Coverage Matrix](docs/02-requirements-map/coverage-matrix.md) |
+| Process and states | [BPMN Workflows](docs/03-process-and-states/bpmn-workflows.md) · [State Transition Models](docs/03-process-and-states/state-transition-models.md) · [Business Rules](docs/03-process-and-states/business-rules.md) · [Exception Matrix](docs/03-process-and-states/exception-matrix.md) · [End-to-End System Behavior](docs/03-process-and-states/end-to-end-system-behavior.md) |
+| Specifications | [User Stories](docs/04-specifications/user-stories.md) · [Functional Requirements](docs/04-specifications/functional-requirements.md) · [UI State Specifications](docs/04-specifications/ui-state-specs.md) |
+| Data and integration | [ERD and Data Dictionary](docs/05-data-and-integration/erd-and-data-dictionary.md) · [API Contracts](docs/05-data-and-integration/api-contracts.md) · [Sequence Diagrams](docs/05-data-and-integration/sequence-diagrams.md) · [SQL Invariants](docs/05-data-and-integration/sql-invariants.md) |
+| Validation and UAT | [UAT Specification](docs/06-validation-and-uat/uat-specification.md) |
+| Governance and decisions | [Architecture Decisions](docs/07-governance-and-decisions/architecture-decisions.md) · [Assumption Register](docs/07-governance-and-decisions/assumption-register.md) · [Open Questions](docs/07-governance-and-decisions/open-questions.md) · [Change Requests](docs/07-governance-and-decisions/change-requests.md) |
+| Measurement and evidence | [ROI and Metrics Plan](docs/08-measurement-and-evidence/roi-and-metrics-plan.md) · [Communication and Decision Evidence](docs/08-measurement-and-evidence/communication-and-decision-evidence.md) |
+| Supporting artifacts | [Diagram Assets](docs/assets/) · [PoC Automation](poc-automation/README.md) · [Source Manifest](docs/source-manifest.yaml) |
 
 This mirror packages business-level API contracts and AC coverage from Confluence. Delivery-level OpenAPI/JSON Schema and detailed Jira Gherkin remain outside the repository until their authoritative sources are approved.
 
@@ -27,8 +26,6 @@ Final Confluence-hosted exports are packaged under `docs/assets/` for BPMN, Stat
 
 ---
 
-## Confluence baseline
-
 > Source: [01. Project Home & Portfolio Summary](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/98315) · Content ID `98315`
 
 **ApproveFlow — B2B SaaS Subscription Engine**  
@@ -36,7 +33,7 @@ A traceable requirement baseline and architectural specification for self-servic
 
 BASELINED — SIMULATION **Ready for Engineering walkthrough; not production-ready evidence.**
 
-# 1. Project Snapshot & Metadata
+## 1. Project Snapshot & Metadata
 
 | **Field** | **Specification Value** |
 | --- | --- |
@@ -47,9 +44,9 @@ BASELINED — SIMULATION **Ready for Engineering walkthrough; not production-rea
 | Primary platform | Desktop Web; modern browser experience |
 | Delivery phase | Requirement baseline and engineering hand-off |
 | Baseline status | BASELINED — SIMULATION |
-| Verified delivery links | [Jira Backlog](https://mindyworkflows.atlassian.net/jira/software/projects/SUB/boards/2?filter=&groupBy=none&atlOrigin=eyJpIjoiNWJkMmQyNThlODE4NGY3N2I3ZmFiNDUwNjZmZmFmOGQiLCJwIjoiaiJ9) · [Figma Canvas](https://www.figma.com/design/ZBPovUXDJwxaT3sJhn2Zu9/ApproveFlow-%E2%80%94-SaaS-Subscription-Management?m=auto&t=KIGQ4IVQoEtASNq1-6) · [Postman Mock Collection](https://mindy-workflows-4402981.postman.co/workspace/af7a4bfd-a892-4d38-8534-cee67ef4f9e4/collection/59058682-f1c3c4a6-ed79-43f7-99f2-5cd9b1b03669) |
+| External workspace links — access may be required | [Jira Backlog](https://mindyworkflows.atlassian.net/jira/software/projects/SUB/boards/2?filter=&groupBy=none&atlOrigin=eyJpIjoiNWJkMmQyNThlODE4NGY3N2I3ZmFiNDUwNjZmZmFmOGQiLCJwIjoiaiJ9) · [Figma Canvas](https://www.figma.com/design/ZBPovUXDJwxaT3sJhn2Zu9/ApproveFlow-%E2%80%94-SaaS-Subscription-Management?m=auto&t=KIGQ4IVQoEtASNq1-6) · [Postman Mock Collection](https://mindy-workflows-4402981.postman.co/workspace/af7a4bfd-a892-4d38-8534-cee67ef4f9e4/collection/59058682-f1c3c4a6-ed79-43f7-99f2-5cd9b1b03669) |
 
-# 2. Executive Summary & Business Outcomes
+## 2. Executive Summary & Business Outcomes
 
 | **View** | **Statement** |
 | --- | --- |
@@ -57,7 +54,7 @@ BASELINED — SIMULATION **Ready for Engineering walkthrough; not production-rea
 | Target state | Authorized Workspace Owners and Billing Admins can upgrade, schedule or cancel a downgrade, and recover failed recurring payments through traceable state-driven workflows. |
 | Business objective | Reduce routine assisted handling while protecting pricing fidelity, payment idempotency, entitlement accuracy, recovery timing and customer data. |
 
-## Measurable Success Targets
+### Measurable Success Targets
 
 **Measurement status:** targets are baselined for future delivery measurement; the portfolio simulation has no production baseline.
 
@@ -70,9 +67,9 @@ BASELINED — SIMULATION **Ready for Engineering walkthrough; not production-rea
 | `QG-01` | Duplicate charges | 0 incidents | Design invariant; implementation validation pending |
 | `QG-06` | Data loss caused by downgrade | 0 records | Design invariant; SQL/UAT execution pending |
 
-Canonical definitions: [Scope, Stakeholders & Success Metrics](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229417/Scope+Stakeholders+Success+Metrics) · [ROI & Measurement Plan](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/66158/ROI+Measurement+Plan)
+Canonical definitions: [Scope and Metrics](docs/01-business-context/scope-and-metrics.md) · [ROI and Metrics Plan](docs/08-measurement-and-evidence/roi-and-metrics-plan.md)
 
-# 3. Scope, Boundaries & Architectural Decisions
+## 3. Scope, Boundaries & Architectural Decisions
 
 | **Capability** | **In Scope** | **Boundary / Out of Scope** | **Decision Rationale** |
 | --- | --- | --- | --- |
@@ -84,9 +81,9 @@ Canonical definitions: [Scope, Stakeholders & Success Metrics](https://mindywork
 
 **Critical invariants:** one non-terminal Subscription Change Request (SCR) per workspace; no second charge during activation retry; upgrade completes only after entitlement activation; access restores only when no required invoice remains `PAST_DUE`.
 
-**Decision source**: [Architecture & Business Decision Log — 20/20 decisions](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229475/Architecture+Business+Decision+Log)
+**Decision source**: [Architecture and Business Decision Log — 20/20 decisions](docs/07-governance-and-decisions/architecture-decisions.md)
 
-# 4. Plan Structure & Commercial Model
+## 4. Plan Structure & Commercial Model
 
 | **Plan** | **Rank** | **Price / Active Member / Month** | **Target Segment** |
 | --- | --- | --- | --- |
@@ -98,9 +95,9 @@ Canonical definitions: [Scope, Stakeholders & Success Metrics](https://mindywork
 - **Upgrade:** immediate only after verified payment and successful entitlement activation.
 - **Downgrade:** scheduled at billing-cycle end; existing data is preserved.
 
-**Configuration source**: [Plan Catalogue & Entitlement Matrix](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/8192008/Plan+Catalogue+Entitlement+Matrix)
+**Configuration source**: [Plan Catalogue and Entitlement Matrix](docs/01-business-context/plan-catalogue.md)
 
-# 5. Core Capabilities & User Story Mapping
+## 5. Core Capabilities & User Story Mapping
 
 | **Epic / Capability** | **Business Outcome** | **User Stories** |
 | --- | --- | --- |
@@ -110,20 +107,20 @@ Canonical definitions: [Scope, Stakeholders & Success Metrics](https://mindywork
 
 **Baseline coverage:** 3 Epics · 6 User Stories · 40 Acceptance Criteria.
 
-# 6. Project Artifact Map & Verification Status
+## 6. Project Artifact Map & Verification Status
 
 | **Layer** | **Canonical Artefact** | **Coverage** | **Verification Status** |
 | --- | --- | --- | --- |
-| Vision, scope & governance | [Business Brief](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229409/Business+Brief) · [Decision Log](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229475/Architecture+Business+Decision+Log) | 20 approved simulation decisions | BASELINED |
-| Process & state | [BPMN Process Models](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/131226/Process+Models) · [State Transition Model](https://mindyworkflows.atlassian.net/wiki/x/ogAC) | As-Is + 3 To-Be workflows; Subscription and SCR FSMs | BASELINED |
-| Requirements & traceability | [Functional Requirements](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229429/Functional+Requirements) · [Requirements Map — Main Cockpit](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/7110657/Main+Cockpit+Change-Ready) | 6 Stories / 40 AC; end-to-end trace | BASELINED |
-| UX & interaction | [Wireframes & UI States](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/66150/Wireframes+UI+States) | Default, loading, error, blocked and success states across 3 journeys | BASELINED |
-| Data & rules | [ERD & Data Dictionary](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229445/ERD+Data+Dictionary) · [Business Rules & Decision Tables](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/98325/Business+Rules+Decision+Tables) | Logical model, enums, invariants and decision logic | BASELINED — SIMULATION |
-| API, sequence & SQL | [API, SQL & Sequence Analysis](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229453/API+SQL+Sequence+Analysis) | API-01–08, SD-01–03, SQL-01–08 | DESIGNED — NOT EXECUTED |
-| Business acceptance | [UAT Specification](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/98340/User+Acceptance+Testing+UAT+Specification) | 9 Must scenarios and sign-off gates | DESIGNED — NOT EXECUTED |
-| Technical prototype | [Paid Upgrade Activation Monitoring PoC](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/14909445/10.+Technical+PoC+Paid+Upgrade+Activation+Monitoring) | 8 author-run mock scenarios; limited US-03 monitoring slice | MANUAL SIMULATION EXECUTED |
+| Vision, scope & governance | [Business Brief](docs/01-business-context/business-brief.md) · [Decision Log](docs/07-governance-and-decisions/architecture-decisions.md) | 20 approved simulation decisions | BASELINED |
+| Process & state | [BPMN Process Models](docs/03-process-and-states/bpmn-workflows.md) · [State Transition Model](docs/03-process-and-states/state-transition-models.md) | As-Is + 3 To-Be workflows; Subscription and SCR FSMs | BASELINED |
+| Requirements & traceability | [Functional Requirements](docs/04-specifications/functional-requirements.md) · [Requirements Map — Main Cockpit](docs/02-requirements-map/main-cockpit.md) | 6 Stories / 40 AC; end-to-end trace | BASELINED |
+| UX & interaction | [Wireframes & UI States](docs/04-specifications/ui-state-specs.md) | Default, loading, error, blocked and success states across 3 journeys | BASELINED |
+| Data & rules | [ERD & Data Dictionary](docs/05-data-and-integration/erd-and-data-dictionary.md) · [Business Rules & Decision Tables](docs/03-process-and-states/business-rules.md) | Logical model, enums, invariants and decision logic | BASELINED — SIMULATION |
+| API, sequence & SQL | [API Contracts](docs/05-data-and-integration/api-contracts.md) · [Sequence Diagrams](docs/05-data-and-integration/sequence-diagrams.md) · [SQL Invariants](docs/05-data-and-integration/sql-invariants.md) | API-01–08, SD-01–03, SQL-01–08 | DESIGNED — NOT EXECUTED |
+| Business acceptance | [UAT Specification](docs/06-validation-and-uat/uat-specification.md) | 9 Must scenarios and sign-off gates | DESIGNED — NOT EXECUTED |
+| Technical prototype | [Paid Upgrade Activation Monitoring PoC](poc-automation/README.md) | 8 author-run mock scenarios; limited US-03 monitoring slice | MANUAL SIMULATION EXECUTED |
 
-# 7. Current Readiness & Engineering Hand-off
+## 7. Current Readiness & Engineering Hand-off
 
 **Ready for walkthrough**
 
@@ -138,18 +135,18 @@ Canonical definitions: [Scope, Stakeholders & Success Metrics](https://mindywork
 - Independent, accessible PoC run artefacts.
 - Production metrics, security validation and operational readiness.
 
-## Hand-off Contract
+### Hand-off Contract
 
 | **Before implementation** | **During delivery** | **Release gate** |
 | --- | --- | --- |
 | Engineering confirms feasibility, service ownership, API error contracts, retry/backoff and observability. | Dev/QA preserve traceability from decision and rule through Story/AC, state transition, test and defect. | No production-readiness claim until integration, SQL, UAT, security and operational evidence are executed and reviewable. |
 
-# 8. Portfolio Competencies Demonstrated
+## 8. Portfolio Competencies Demonstrated
 
 | **Competency** | **Evidence** |
 | --- | --- |
-| Requirements Engineering & Traceability | [Requirements Map — Main Cockpit](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/7110657/Main+Cockpit+Change-Ready) traces 5 business objectives, 12 business rules and 34 functional requirements through 3 Epics, 6 Jira Stories and 40 acceptance criteria to SQL-01–08 and 9 UAT scenarios. |
-| Process, State & Boundary Modeling | [4 BPMN collaboration models](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/131226/Process+Models) (1 As-Is, 3 To-Be), [2 domain state machines](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/131234/State+Transition+Model+Specification) (Subscription and SCR) and [3 sequence diagrams](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229453/API+SQL+Sequence+Analysis) cover system ownership, asynchronous callbacks, retry, timeout and exception paths. |
-| Data Integrity & Integration Reasoning | [Logical ERD and Data Dictionary](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229445/ERD+Data+Dictionary) plus [API-01–08 and SQL-01–08](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229453/API+SQL+Sequence+Analysis) specify payment idempotency, conditional invoice/SCR parentage, entitlement consistency and the zero-data-loss downgrade invariant. |
-| Engineering Integrity | [20/20 simulation decisions](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/229475/Architecture+Business+Decision+Log) are baselined; the [Technical PoC records 8/8 author-run mock scenarios](https://mindyworkflows.atlassian.net/wiki/spaces/~712020023d2d45822847ceae0a13314552bb4b/pages/14909445/10.+Technical+PoC+Paid+Upgrade+Activation+Monitoring); API/SQL validation and 9 UAT scenarios remain DESIGNED — NOT EXECUTED, with no production-readiness claim. |
+| Requirements Engineering & Traceability | [Requirements Map — Main Cockpit](docs/02-requirements-map/main-cockpit.md) traces 5 business objectives, 12 business rules and 34 functional requirements through 3 Epics, 6 Jira Stories and 40 acceptance criteria to SQL-01–08 and 9 UAT scenarios. |
+| Process, State & Boundary Modeling | [4 BPMN collaboration models](docs/03-process-and-states/bpmn-workflows.md) (1 As-Is, 3 To-Be), [2 domain state machines](docs/03-process-and-states/state-transition-models.md) (Subscription and SCR) and [3 sequence diagrams](docs/05-data-and-integration/sequence-diagrams.md) cover system ownership, asynchronous callbacks, retry, timeout and exception paths. |
+| Data Integrity & Integration Reasoning | [Logical ERD and Data Dictionary](docs/05-data-and-integration/erd-and-data-dictionary.md) plus [API-01–08](docs/05-data-and-integration/api-contracts.md) and [SQL-01–08](docs/05-data-and-integration/sql-invariants.md) specify payment idempotency, conditional invoice/SCR parentage, entitlement consistency and the zero-data-loss downgrade invariant. |
+| Engineering Integrity | [20/20 simulation decisions](docs/07-governance-and-decisions/architecture-decisions.md) are baselined; the [Technical PoC records 8/8 author-run mock scenarios](poc-automation/README.md); API/SQL validation and 9 UAT scenarios remain DESIGNED — NOT EXECUTED, with no production-readiness claim. |
 
